@@ -1,16 +1,12 @@
 <div>
-  companions-list works!
+  List of possible companions - please select carefully !
+  <!-- <input type="text" (input)="onLookUpNameSelected($event)"> {{ lookUpName }} -->
+  <input type="text" [(ngModel)]="lookUpName"> {{ lookUpName }}
+  <br/>
+
 
   <div *ngIf="companions">
-    <app-companion-item *ngFor="let companion of companions"></app-companion-item>
+    <app-companion-item *ngFor="let companion of companions" [companion]="companion"></app-companion-item>
   </div>
-  <ul>
-    <li *ngFor="let companion of companions">
-        <div class="boxed">
-        Companion from UL - LI - name: {{ companion.name }}; rating: {{ companion.rating }}
-        </div>
-        <br/>
-    </li>
-  </ul>
   <app-companion-details></app-companion-details>
 </div>
