@@ -1,0 +1,16 @@
+<div>
+  companions-list works!
+
+  <div *ngIf="companions">
+    <app-companion-item *ngFor="let companion of companions"></app-companion-item>
+  </div>
+  <ul>
+    <li *ngFor="let companion of companions">
+        <div class="boxed">
+        Companion from UL - LI - name: {{ companion.name }}; rating: {{ companion.rating }}
+        </div>
+        <br/>
+    </li>
+  </ul>
+  <app-companion-details></app-companion-details>
+</div>

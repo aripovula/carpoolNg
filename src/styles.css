@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+  #container{
+    width: 100%;
+    overflow:hidden;
+    text-align: center;
+    border-bottom: 2px solid rgb(30, 218, 208);
+  }
+
+  #container > div{
+    height:100vh;
+    float:left;
+  }
+
+  #left {
+    width:50%;
+  }
+
+  #right {
+    width: 49.5%;
+    border-left: 2px solid rgb(30, 218, 208);
+  }
+
+  .boxed {
+    width: 96%;
+    border: green solid 2px;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 2%;
+    color: green;
+    /* font-size: 18px; */
+    text-align: left;
+    border-radius: 2px;
+  }
