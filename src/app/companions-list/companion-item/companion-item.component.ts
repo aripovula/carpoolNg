@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -9,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class CompanionItemComponent implements OnInit {
   @Input('companion') companion: any;
+  @Input('ind') ind: any;
+  @Output() selectedCompanionID = new EventEmitter<number>();
   selectedCompanion = undefined;
   // isSelected = true;
   constructor() { }
@@ -16,12 +18,13 @@ export class CompanionItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  onCompanionSelected() {
-    this.selectedCompanion = 1;
-    console.log('in onCompanionSelected');
+  onCompanionSelected(id: number) {
+    this.selectedCompanionID.emit(id);
+    this.selectedCompanion = id;
+    console.log('ID = ' + id);
   }
 
   getBGColor() {
-    return this.selectedCompanion === 1 ? 'green' : 'gray';
+    return this.selectedCompanion === 1 ? 'lightgray' : '';
   }
 }

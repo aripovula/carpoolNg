@@ -7,14 +7,14 @@
           [src]="companion.image" 
           [alt]="companion.name" 
           width="62" height="55"
-          (click)="onCompanionSelected()"
+          (click)="onCompanionSelected(companion.id)"
           >
           <input style="float: left" type="checkbox" name="selected" value="selected" [checked]="companion.isFrequentlySelected">
       </div>
       
-      <div class="post-content">
+      <div class="post-content" [ngClass]="{highlight: ind==1}">
         <span class="post-title">
-          name: {{ companion.name }}</span>
+          {{ind+1}}. name: {{ companion.name }}</span>
         <br/><span>rating: {{ companion.rating }}</span> {{ selectedCompanion }}
         <!-- <br/><span style="font-size:12px">click image to select / for details, click again to deselect</span> -->
       </div>

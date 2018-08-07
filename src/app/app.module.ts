@@ -8,6 +8,11 @@ import { CompanionsListComponent } from './companions-list/companions-list.compo
 import { CompanionItemComponent } from './companions-list/companion-item/companion-item.component';
 import { CompanionDetailsComponent } from './companions-list/companion-details/companion-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SelectComponent } from './select/select.component';
+import { ParamsComponent } from './params/params.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { ItineraryComponent } from './itinerary/itinerary.component';
 
 
 @NgModule({
@@ -17,6 +22,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CompanionItemComponent,
     CompanionDetailsComponent,
     DashboardComponent,
+    SelectComponent,
+    ParamsComponent,
+    ProfileComponent,
+    FeedbackComponent,
+    ItineraryComponent,
   ],
   imports: [
     BrowserModule,

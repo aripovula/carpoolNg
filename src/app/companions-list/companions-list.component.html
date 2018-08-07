@@ -1,12 +1,19 @@
 <div>
   List of possible companions - please select carefully !
   <!-- <input type="text" (input)="onLookUpNameSelected($event)"> {{ lookUpName }} -->
-  <input type="text" [(ngModel)]="lookUpName"> {{ lookUpName }}
+  <input type="text" [(ngModel)]="lookUpName"> 
+  
+  <span [ngClass]="{highlight: lookUpName.length > 4}">{{ lookUpName }}</span>
   <br/>
 
 
   <div *ngIf="companions">
-    <app-companion-item *ngFor="let companion of companions" [companion]="companion"></app-companion-item>
+    <app-companion-item 
+    *ngFor="let companion of companions; let ind = index" 
+    [companion]="companion" 
+    [ind]="ind" 
+    (selectedCompanionID)="onCompanionSelected($event)"
+    ></app-companion-item>
   </div>
   <app-companion-details></app-companion-details>
 </div>

@@ -9,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class CompanionsListComponent implements OnInit {
   lookUpName = 'Ben';
   selectedCompanion = undefined;
+  companionIDforDetails = undefined;
   companions = [
-    {name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../../assets/Alex.jpg'},
-    {name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../../assets/Ben.jpg'},
-    {name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../../assets/Cathy.jpg'}
+    {id: 1, name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../../assets/Alex.jpg'},
+    {id: 2, name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../../assets/Ben.jpg'},
+    {id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../../assets/Cathy.jpg'}
   ];
 
   constructor() { }
@@ -26,8 +27,8 @@ export class CompanionsListComponent implements OnInit {
     console.log(this.lookUpName);
   }
 
-  onCompanionSelected() {
-    this.selectedCompanion = 1;
-    console.log('in onCompanionSelected IN LIST');
+  onCompanionSelected = (id: number) => {
+    this.companionIDforDetails = id;
+    console.log( 'ID2LS = ' + id);
   }
 }
