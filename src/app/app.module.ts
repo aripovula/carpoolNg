@@ -11,13 +11,18 @@ import { ProfileComponent } from './profile/profile.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ItineraryComponent } from './itinerary/itinerary.component';
 import { CompanionDetailsComponent } from './companion-details/companion-details.component';
-
+import { HighlightDirective } from './directives/highlight.directive';
+import { CustomUnlessDirective } from './directives/customUnless.directive';
+import { DataService } from './services/data.service';
+import { LoggingService } from './services/logging.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanionsListComponent,
     DashboardComponent,
+    HighlightDirective,
+    CustomUnlessDirective,
     SelectComponent,
     ParamsComponent,
     ProfileComponent,
@@ -30,7 +35,7 @@ import { CompanionDetailsComponent } from './companion-details/companion-details
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [DataService, LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

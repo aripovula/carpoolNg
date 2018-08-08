@@ -22,7 +22,7 @@
   }
 
   .boxed {
-    width: 96%;
+    width: 95%;
     border: green solid 2px;
     padding: 5px;
     margin: 5px;
@@ -31,4 +31,8 @@
     /* font-size: 18px; */
     text-align: left;
     border-radius: 2px;
+  }
+
+  .bold{
+    font-weight: bold;
   }

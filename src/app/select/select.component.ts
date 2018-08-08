@@ -6,26 +6,28 @@ import { Component, OnInit } from '@angular/core';
   <div id="container">
     <div id="left">
       select works!
-      <app-companion-details [companionID]="companionIDforDetails"></app-companion-details>
+       <!--using @Input <app-companion-details [companionID]="companionIDforDetails"></app-companion-details> -->
+       <app-companion-details ></app-companion-details>
     </div>
     <div id="right">
-      <app-companions-list (selectedCompanionID)="onCompanionSelected($event)"></app-companions-list>
-    </div>
+      <!-- <app-companions-list (selectedCompanionID)="onCompanionSelected($event)">&nbsp;&nbsp;&nbsp;&nbsp;</app-companions-list> -->
+      <app-companions-list >&nbsp;&nbsp;&nbsp;&nbsp;</app-companions-list>
+      </div>
   </div>
     `,
   styleUrls: ['./select.component.css']
 })
 export class SelectComponent implements OnInit {
 
-  companionIDforDetails = undefined;
+  // companionIDforDetails = undefined;
   constructor() { }
 
   ngOnInit() {
   }
 
-  onCompanionSelected = (id: number) => {
-    this.companionIDforDetails = id;
-    console.log('ID SEL = ' + id);
-  }
+  // onCompanionSelected = (id: number) => {
+  //   this.companionIDforDetails = id;
+  //   console.log('ID SEL = ' + id);
+  // }
 
 }

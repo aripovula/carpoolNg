@@ -1,26 +1,66 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
+
+import { LoggingService } from './../services/logging.service';
+import { DataService } from './../services/data.service';
 
 @Component({
   selector: 'app-companion-details',
   template: `
-    <p>
+  <div *appCustomUnless="!companionID">
+    <p appHighlight>
       companion-details works!
-      <span *ngIf="companionID">
-        id = {{ companionID }}
-      </span>
     </p>
-    preferred companions:  quiet, discussing sports, discussing politics, discussing economic issues
-    interests:
+    <span>{{ companionID }}</span>
+    <p class="appHighlight"></p>
+      <div class="boxed">
+        <div>
+          <img
+          style="float: left; margin-right:10px"
+            [src]="companions[companionID-1].image"
+            [alt]="companions[companionID-1].name"
+            width="124" height="110"
+          >
+        </div>
+        <div>
+          <span class="bold">
+            name: {{ companions[companionID-1].name }}</span>
+          <br/>
+          <span>rating: {{ companions[companionID-1].rating }}</span>
+          <br/>
+          preferred companions:
+          <br/>
+          quiet, discussing sports, discussing politics, discussing economic issues
+          <br/>
+          interests:
+          <br/>
+          policy records:
+
+        </div>
+      </div>
+    </div>
   `,
-  styleUrls: ['./companion-details.component.css']
+  styleUrls: ['./companion-details.component.css'],
+  providers: [ ]
 })
-export class CompanionDetailsComponent implements OnInit {
+export class CompanionDetailsComponent implements OnChanges {
 
-  @Input() companionID: number;
+  // @Input() companionID: number;
+  companionID: number;
+  // temporary measure
+  companions = [
+    { id: 1, name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../assets/Alex.jpg' },
+    { id: 2, name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../assets/Ben.jpg' },
+    { id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../assets/Cathy.jpg' }
+  ];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private logService: LoggingService, private dataService: DataService) {
+    this.dataService.companionIDupdated.subscribe(
+      (id: number) => this.companionID = id
+    );
   }
 
+  ngOnChanges() {
+    // const logService = new LoggingService();
+    // this.logService.logStatusChange('using Service from Details = ' + this.companionID);
+  }
 }

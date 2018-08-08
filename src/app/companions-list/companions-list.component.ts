@@ -1,4 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
+
+import { LoggingService } from './../services/logging.service';
+import { DataService } from './../services/data.service';
 
 @Component({
   selector: 'app-companions-list',
@@ -8,6 +11,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   <!-- <input type="text" (input)="onLookUpNameSelected($event)"> {{ lookUpName }} -->
   <input type="text" [(ngModel)]="lookUpName">
   <span [ngClass]="{highlight: lookUpName.length > 4}">{{ lookUpName }}</span>
+  <br/>
+  <input type="text" #lookUpName2>
+  <button (click)="onLookUpNameSelected2(lookUpName2)">Submit</button>
+  <ng-content></ng-content>
+  <input type="text" #lookUpName3>
+  <button (click)="onLookUpNameSelected3(lookUpName3)">Submit</button>
   <br/>
   <div *ngIf="companions">
     <div *ngFor="let companion of companions; let ind = index">
@@ -35,38 +44,61 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
     </div>
   </div>
-  <app-companion-details></app-companion-details>
 </div>
   `,
-  styleUrls: ['./companions-list.component.css']
+  styleUrls: ['./companions-list.component.css'],
+  providers: [ ]
 })
 
-export class CompanionsListComponent implements OnInit {
+export class CompanionsListComponent implements OnInit, OnChanges {
   @Output() selectedCompanionID = new EventEmitter<number>();
   lookUpName = 'Ben';
+  lookUpName2 = 'Ben';
+  @ViewChild('lookUpName3') lookUpName3: ElementRef;
   selectedCompanion = undefined;
   companionIDforDetails = undefined;
-  companions = [
-    { id: 1, name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../assets/Alex.jpg' },
-    { id: 2, name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../assets/Ben.jpg' },
-    { id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../assets/Cathy.jpg' }
-  ];
+  companions: { id: number, name: string, rating: number, isFrequentlySelected: boolean, image: string }[] = [];
 
-  constructor() { }
+  // companions = [
+  //   { id: 1, name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../assets/Alex.jpg' },
+  //   { id: 2, name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../assets/Ben.jpg' },
+  //   { id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../assets/Cathy.jpg' }
+  // ];
+
+  constructor(private logService: LoggingService, private dataService: DataService) {  }
 
   ngOnInit() {
     // console.log(this.companions[1]);
+    this.companions = this.dataService.companions;
+    this.selectedCompanion = this.dataService.companionID;
+  }
+
+  ngOnChanges() {
+    // const logService = new LoggingService();
+    // this.logService.logStatusChange('using Service from Details = ' + this.companionID);
   }
 
   onLookUpNameSelected(event: Event) {
     this.lookUpName = (<HTMLInputElement>event.target).value;
-    console.log(this.lookUpName);
+    console.log('1' + this.lookUpName);
+  }
+
+  onLookUpNameSelected2(newWay: HTMLInputElement) {
+    this.lookUpName2 = newWay.value;
+    console.log('2' + this.lookUpName2);
+  }
+
+  onLookUpNameSelected3() {
+    // this.lookUpName3.nativeElement.value = 'Got It !';
+    this.lookUpName3 = this.lookUpName3.nativeElement.value;
+    console.log('3' + this.lookUpName3);
   }
 
   onCompanionSelected(id: number) {
-    this.selectedCompanionID.emit(id);
-    this.selectedCompanion = id;
-    console.log('ID = ' + id);
+    // this.selectedCompanionID.emit(id);
+    // this.selectedCompanion = id;
+    // this.logService.logStatusChange('using Service from List = ' + this.selectedCompanion);
+    this.dataService.setCompanionID(id);
   }
 
   getBGColor() {
