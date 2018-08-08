@@ -1,0 +1,32 @@
+/* .menu {
+    display: flex!important; 
+    align-items: center!important; 
+    justify-content: center!important; 
+    text-decoration: none!important; 
+    margin: 20px!important; 
+  }
+   */
+
+   .header {
+    background: gray; 
+     /* #364051; */
+    height: 35px;
+    line-height: 35px;
+    align-items: center;
+  }
+  
+  .header__content {
+    height: 35px;
+    line-height: 35px;
+    align-items: center;
+    display: flex;
+  }
+  
+  .header__title {
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  
+  .active-link{
+      color: white;
+  }

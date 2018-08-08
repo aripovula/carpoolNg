@@ -1,4 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
+
 <div>
-      <app-select></app-select>
+      <div class="header header__content">
+            <a class="header__title"
+             routerLink="/" 
+             routerLinkActive="active-link"
+             [routerLinkActiveOptions]="{exact: true}"
+            >home</a>
+            <a class="header__title" routerLink="/select" routerLinkActive="active-link">select</a>
+            <a class="header__title" routerLink="/profile" routerLinkActive="active-link">profile</a>
+            <a class="header__title" routerLink="/params" routerLinkActive="active-link">params</a>
+            <!-- <a class="header__title" routerLink="" routerLinkActive="active-link">idle</a>
+            <a class="header__title" routerLink="" routerLinkActive="active-link">idle</a> -->
+      </div>
+      <router-outlet></router-outlet>
 </div>

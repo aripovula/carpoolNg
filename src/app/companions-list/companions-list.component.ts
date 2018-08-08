@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { LoggingService } from './../services/logging.service';
 import { DataService } from './../services/data.service';
@@ -65,7 +66,7 @@ export class CompanionsListComponent implements OnInit, OnChanges {
   //   { id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../assets/Cathy.jpg' }
   // ];
 
-  constructor(private logService: LoggingService, private dataService: DataService) {  }
+  constructor(private logService: LoggingService, private dataService: DataService, private router: Router) {  }
 
   ngOnInit() {
     // console.log(this.companions[1]);
@@ -86,6 +87,7 @@ export class CompanionsListComponent implements OnInit, OnChanges {
   onLookUpNameSelected2(newWay: HTMLInputElement) {
     this.lookUpName2 = newWay.value;
     console.log('2' + this.lookUpName2);
+    this.router.navigate(['/feedback', this.lookUpName2, this.lookUpName2]);
   }
 
   onLookUpNameSelected3() {

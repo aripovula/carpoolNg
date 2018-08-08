@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
 import { AppComponent } from './app.component';
 import { CompanionsListComponent } from './companions-list/companions-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -15,6 +16,9 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { CustomUnlessDirective } from './directives/customUnless.directive';
 import { DataService } from './services/data.service';
 import { LoggingService } from './services/logging.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -29,11 +33,13 @@ import { LoggingService } from './services/logging.service';
     FeedbackComponent,
     ItineraryComponent,
     CompanionDetailsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [DataService, LoggingService],
   bootstrap: [AppComponent]
