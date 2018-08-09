@@ -18,6 +18,7 @@ import { DataService } from './services/data.service';
 import { LoggingService } from './services/logging.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SetupComponent } from './setup/setup.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AppRoutingModule } from './app-routing.module';
     ItineraryComponent,
     CompanionDetailsComponent,
     NotFoundComponent,
+    SetupComponent,
   ],
   imports: [
     BrowserModule,

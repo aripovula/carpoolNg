@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Assistant');
+
+body, html {
+  font-family: 'Assistant';
+}
 
   #container{
     width: 100%;
@@ -21,18 +26,104 @@
     border-left: 2px solid rgb(30, 218, 208);
   }
 
+  
   .boxed {
-    width: 95%;
+    width: 92%;
     border: green solid 2px;
-    padding: 5px;
+    padding: 15px;
     margin: 5px;
     margin-left: 2%;
     color: green;
-    /* font-size: 18px; */
     text-align: left;
     border-radius: 2px;
   }
+  
+  .boxedExact {
+    width: 95%;
+    border: green solid 2px;
+    padding: 5px;
+    margin-left: 2%;
+    color: green;
+    font-size: 15px;
+    text-align: left;
+    border-radius: 2px;
+  }  
 
   .bold{
     font-weight: bold;
   }
+
+  .horIndent{
+    display:inline-block; 
+    width: 20px;
+  }
+  
+  .verIndent{
+    display:block; 
+    height: 10px;
+  }
+  
+  .verIndentFive{
+    display:block; 
+    height: 5px;
+  }
+  
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .form-group .wrap {
+    min-width: 8em;
+    margin: 4px; /* to add gap between rows */
+  }
+
+  .form-element label {
+    display: inline-block;
+    width: 100px;
+}
+ 
+  .scrollDiv{
+    overflow: auto;
+    max-height: 100vh;
+  }
+
+  .fixedElement {
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:100;
+  }
+  
+  .margintop {
+    margin-top: 35px;
+  }
+  
+  .post-container {
+    width: 96%;
+    border: green solid 2px;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 2%;
+    overflow: auto
+}
+.post-thumb {
+    float: left
+}
+.post-thumb img {
+    display: block
+}
+.post-content {
+    margin-left: 90px;
+    text-align: left;
+}
+.post-title {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+}
+
+.highlight {
+    background-color: bisque;
+}

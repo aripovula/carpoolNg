@@ -1,3 +1,91 @@
-<p>
-  profile works!
-</p>
+<div class="scrollDiv boxed">
+  <form>
+      <div ng-app="app">
+          <div ng-controller="AppController">
+              <input type="file" nv-file-select uploader="uploader"/><br/>
+              <ul>
+                  <li ng-repeat="item in uploader.queue">
+                      Name: <span ng-bind="item.file.name"></span><br/>
+                      <button ng-click="item.upload()">upload</button>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="form-element">
+          <label for="">Full name: </label><input type="text" autocomplete="off" name="" size="30">
+      </div>
+    
+      <div class="form-element">
+          <label for="">Your address: </label><input type="text" autocomplete="off" name="" size="30">
+      </div>
+
+    <div class="form-element">
+        <label for="">Zip-Code: </label><input type="text" autocomplete="off" name="" size="30">
+    </div>
+    <div class="form-element">
+        <label for="">State: </label><input type="text" autocomplete="off" name="" size="30">
+    </div>
+    <p style="font-size:12px">*) your address is never disclosed to others. Used only to plan your itinerary only</p>
+    <hr/>
+    <label for="">Interests: </label><br/>
+    <div class="form-group">
+        <div class="wrap"><label><input type="checkbox" name=""> sports</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> politics</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> ecomics/finance</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> science</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> music</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> arts</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> fiction books</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> martial arts</label></div>
+        <div class="wrap"><label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label></div>
+    <!-- </label> -->
+  </div>
+  <hr/>
+    <div class="" style="  display: flex!important; ">
+    <label for="">Please describe your personality: <br/>
+        <label><input type="checkbox" name="">extravert</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">intravert</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">joyful</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">silent</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">punctual</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">always early</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">sometimes late</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">like discussions / criticizing</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">calm</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">impulsive</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">clean / tidy</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">a little messy</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">shy / timid</label><span class="horIndent"></span>
+        <label><input type="checkbox" name="">impudent</label><span class="horIndent"></span>
+      <label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label>
+    </label></div>
+    <label for="">Music / song preferences: <input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for="">Do you have any disabilities<input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for="">Do you have any criminal convictions<input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for="">Which topics you usually prefer discussing<input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for="">Would you tolerate a pet in a car? 
+      <label for=""><input type="radio" name="">Yes</label>
+      <label for=""><input type="radio" name="">Never</label>
+      <label for=""><input type="radio" name="">Depends</label>
+      <label for=""><input type="text" autocomplete="off" name="" size="30"></label>
+    </label><br/>
+    <label for="">Your ethnic origin:<br/>
+        <label for=""><input type="radio" name="">Europe</label><br/>
+        <label for=""><input type="radio" name="">Mexico or South America</label><br/>
+        <label for=""><input type="radio" name="">American Indian, Alaskan Native or Hawaiian Native</label><br/>
+        <label for=""><input type="radio" name="">Africa - North</label><br/>
+        <label for=""><input type="radio" name="">Africa - Other</label><br/>
+        <label for=""><input type="radio" name="">Asia - Middle East</label><br/>
+        <label for=""><input type="radio" name="">Asia - Central</label><br/>
+        <label for=""><input type="radio" name="">Asia Pacific</label><br/>
+
+      </label><br/>  
+    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
+    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
+
+  </form>
+</div>

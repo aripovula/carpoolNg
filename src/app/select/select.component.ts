@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-select',
   template: `
-  <div id="container">
+  <div id="container" class="margintop">
     <div id="left">
       select works!
        <!--using @Input <app-companion-details [companionID]="companionIDforDetails"></app-companion-details> -->

@@ -12,13 +12,13 @@ import { DataService } from './../services/data.service';
     </p>
     <span>{{ companionID }}</span>
     <p class="appHighlight"></p>
-      <div class="boxed">
+      <div class="boxedExact">
         <div>
           <img
-          style="float: left; margin-right:10px"
+          style="float: left; margin-right: 10px"
             [src]="companions[companionID-1].image"
             [alt]="companions[companionID-1].name"
-            width="124" height="110"
+            width="110" height="110"
           >
         </div>
         <div>

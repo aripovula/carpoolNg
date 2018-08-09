@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ItineraryComponent } from './itinerary/itinerary.component';
 import { SelectComponent } from './select/select.component';
+import { SetupComponent } from './setup/setup.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ParamsComponent } from './params/params.component';
@@ -12,7 +13,7 @@ const appRoutes: Routes = [
     { path: '', component: ItineraryComponent},
     { path: 'select', component: SelectComponent},
     { path: 'feedback/:id/:name', component: FeedbackComponent},
-    { path: 'profile', component: ProfileComponent},
+    { path: 'profile', component: SetupComponent},
     { path: 'params', component: ParamsComponent},
     { path: 'not-found', component: NotFoundComponent},
     { path: '**', redirectTo: '/not-found' }
