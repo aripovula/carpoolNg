@@ -1,22 +1,16 @@
+<div ng-controller="AppController" nv-file-drop="" uploader="uploader">
+
 <div class="scrollDiv boxed">
   <form>
-      <div ng-app="app">
-          <div ng-controller="AppController">
-              <input type="file" nv-file-select uploader="uploader"/><br/>
-              <ul>
-                  <li ng-repeat="item in uploader.queue">
-                      Name: <span ng-bind="item.file.name"></span><br/>
-                      <button ng-click="item.upload()">upload</button>
-                  </li>
-              </ul>
-          </div>
-      </div>
+        <image-upload></image-upload>    
+    
+    
       <div class="form-element">
           <label for="">Full name: </label><input type="text" autocomplete="off" name="" size="30">
       </div>
     
       <div class="form-element">
-          <label for="">Your address: </label><input type="text" autocomplete="off" name="" size="30">
+          <label for="">Your address: </label><input type="text" autocomplete="off" name="" size="30"> ( optional )
       </div>
 
     <div class="form-element">
@@ -25,61 +19,115 @@
     <div class="form-element">
         <label for="">State: </label><input type="text" autocomplete="off" name="" size="30">
     </div>
-    <p style="font-size:12px">*) your address is never disclosed to others. Used only to plan your itinerary only</p>
+    <p style="font-size:12px">*) your address is never disclosed to others. Used only to plan your itinerary</p>
     <hr/>
-    <label for="">Interests: </label><br/>
+    <div class="" style="  display: flex!important; ">
+    <label for="">Please describe yourself: <br/>
+      <div class="form-group">
+        <div class="wrap"><label><input type="checkbox" name=""> extravert</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> intravert</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> joyful</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> silent</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> a discusser</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> a criticizer</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> calm</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> impulsive</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> clean / tidy</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> a little messy</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> shy / timid</label><span class="horIndent"></span></div>
+        <div class="wrap"><label><input type="checkbox" name=""> modest</label><span class="horIndent"></span></div>
+      </div>
+      <label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label>
+      </label></div>
+      <hr/>
+      <label for="">Interests:</label>
+      <br/>
+      <div class="form-group">
+          <div class="wrap"><label><input type="checkbox" name=""> sports</label></div>
+          <div class="wrap"><label><input type="checkbox" name=""> politics</label></div>
+          <div class="wrap"><label><input type="checkbox" name=""> ecomics/finance</label></div>
+          <div class="wrap"><label><input type="checkbox" name=""> science</label></div>
+          <div class="wrap"><label><input type="checkbox" name=""> music</label></div>
+          <div class="wrap"><label><input type="checkbox" name=""> arts</label></div>
+          <div class="wrap"><label><input type="checkbox" name=""> fiction books</label></div>
+          <div class="wrap"><label><input type="checkbox" name=""> martial arts</label></div>
+          <div class="wrap"><label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label></div>
+      <!-- </label> -->
+    </div>
+    
+    <label for="">I like talking about these topics:</label>
     <div class="form-group">
-        <div class="wrap"><label><input type="checkbox" name=""> sports</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> politics</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> ecomics/finance</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> science</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> music</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> arts</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> fiction books</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> martial arts</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> usually</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> when others are interested</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> never</label></div>
+    </div>
+    <hr/>
+    <label for="">Music / song preferences:</label>
+    <br/>
+    <div class="form-group">
+        <div class="wrap"><label for="">I prefer:</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> no music / songs</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> any music</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> any selected below</label></div>
+    </div>
+    <div class="form-group">
+        <div class="wrap"><label><input type="checkbox" name=""> pop</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> smooth jazz</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> club</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> soft rock</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> religious talk</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> other talk</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> country</label></div>
+        <div class="wrap"><label><input type="checkbox" name=""> hard rock</label></div>
         <div class="wrap"><label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label></div>
     <!-- </label> -->
   </div>
   <hr/>
-    <div class="" style="  display: flex!important; ">
-    <label for="">Please describe your personality: <br/>
-        <label><input type="checkbox" name="">extravert</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">intravert</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">joyful</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">silent</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">punctual</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">always early</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">sometimes late</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">like discussions / criticizing</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">calm</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">impulsive</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">clean / tidy</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">a little messy</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">shy / timid</label><span class="horIndent"></span>
-        <label><input type="checkbox" name="">impudent</label><span class="horIndent"></span>
-      <label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label>
-    </label></div>
-    <label for="">Music / song preferences: <input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for="">Do you have any disabilities<input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for="">Do you have any criminal convictions<input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for="">Which topics you usually prefer discussing<input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for="">Would you tolerate a pet in a car? 
-      <label for=""><input type="radio" name="">Yes</label>
-      <label for=""><input type="radio" name="">Never</label>
-      <label for=""><input type="radio" name="">Depends</label>
-      <label for=""><input type="text" autocomplete="off" name="" size="30"></label>
-    </label><br/>
-    <label for="">Your ethnic origin:<br/>
-        <label for=""><input type="radio" name="">Europe</label><br/>
-        <label for=""><input type="radio" name="">Mexico or South America</label><br/>
-        <label for=""><input type="radio" name="">American Indian, Alaskan Native or Hawaiian Native</label><br/>
-        <label for=""><input type="radio" name="">Africa - North</label><br/>
-        <label for=""><input type="radio" name="">Africa - Other</label><br/>
-        <label for=""><input type="radio" name="">Asia - Middle East</label><br/>
-        <label for=""><input type="radio" name="">Asia - Central</label><br/>
-        <label for=""><input type="radio" name="">Asia Pacific</label><br/>
+  <label for="">I prefer a :</label>
+  <div class="form-group">
+    <div class="wrap"><label for=""><input type="radio" name=""> minimal talk ride</label></div>
+    <div class="wrap"><label for=""><input type="radio" name=""> moderate talk ride</label></div>
+    <div class="wrap"><label for=""><input type="radio" name=""> does not matter</label></div>
+  </div>
+  <hr/>
 
-      </label><br/>  
+  <label for="">Ethnic origin:<br/></label>
+    <div class="form-group">
+        <div class="wrap"><label for=""><input type="radio" name=""> Europe</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> Latin America</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> American - Minority *</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> Africa - North-most</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> Africa - Other</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> Asia - Middle East</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> Asia - Central</label></div>
+        <div class="wrap"><label for=""><input type="radio" name=""> Asia - Pacific</label></div>
+  </div>
+*) American Indian, Alaskan Native, Hawaiian Native or Other Pacific Islander
+  <hr/>
+  <label for="">Do you have any disabilities: </label>
+  <div class="form-group">
+    <div class="wrap"><label for=""><input type="radio" name=""> No</label></div>
+    <div class="wrap"><label for=""><input type="radio" name=""> Yes</label></div>
+    <div class="wrap"><label for="">Details: <input type="text" name=""  size="30"></label></div>
+  </div>
+  <hr/>
+  <label for="">Do you have any criminal convictions: </label>
+  <div class="form-group">
+    <div class="wrap"><label for=""><input type="radio" name=""> No</label></div>
+    <div class="wrap"><label for=""><input type="radio" name=""> Yes</label></div>
+    <div class="wrap"><label for="">Details: <input type="text" name=""  size="30"></label></div>
+  </div>
+  <hr/>
+  <label for="">Would you tolerate a pet in a car? </label>
+  <div class="form-group">
+    <div class="wrap"><label for=""><input type="radio" name=""> Yes</label></div>
+    <div class="wrap"><label for=""><input type="radio" name=""> No</label></div>
+    <div class="wrap"><label for=""><input type="radio" name=""> Depends</label></div>
+    <div class="wrap"><label for="">Comment: <input type="text" name=""  size="30"></label></div>
+  </div>
+  <hr/>
+
+    <label for="">abc <input type="text" autocomplete="off" name="" size="30"></label><br/>
     <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
     <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
     <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
@@ -88,4 +136,5 @@
     <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
 
   </form>
+</div>
 </div>

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ImageUploadModule } from 'angular2-image-upload';
+
 
 import { AppComponent } from './app.component';
 import { CompanionsListComponent } from './companions-list/companions-list.component';
@@ -41,7 +43,8 @@ import { SetupComponent } from './setup/setup.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ImageUploadModule.forRoot(),
   ],
   providers: [DataService, LoggingService],
   bootstrap: [AppComponent]
