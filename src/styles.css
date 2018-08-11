@@ -9,7 +9,6 @@ body, html {
     width: 100%;
     overflow:hidden;
     text-align: center;
-    border-bottom: 2px solid rgb(30, 218, 208);
   }
 
   #container > div{
@@ -26,6 +25,29 @@ body, html {
     border-left: 2px solid rgb(30, 218, 208);
   }
 
+  input.ng-untouched {
+    border: none;
+    border-bottom: 2px solid lightseagreen;
+    margin:4px;
+    font-size: 16px;
+    background-color: white;
+  }  
+
+  input.ng-valid {
+    border: none;
+    border-bottom: 2px solid lightseagreen;
+    margin:8px;
+    font-size: 16px;
+    background-color: white;
+  }  
+
+  input.ng-invalid.ng-touched{
+    border: none;
+    border-bottom: 2px solid rgb(230, 36, 130);
+    margin:8px;
+    font-size: 16px;
+    background-color: white;
+  }
   
   .boxed {
     width: 92%;
@@ -128,24 +150,28 @@ body, html {
     background-color: bisque;
 }
 
-div.simpleImageUpload.is-dragover {
-  background-color: greenyellow;
-  border-color: green;
+
+.imageUpload{
+    background-color: #eee;
+    border-radius: 2px;
+    margin:2px;
+    width: 560px;
+    font-size: 14px;
 }
 
-div.simpleImageUpload {
-  background-color: #F8F8F8;
-  border: 2px dashed #B1B2B7;
-  width: 200px;
-  height: 200px;
-  white-space: pre; /* Important for breakLine */
+.imageUpload .img-ul-upload {
+    background-color: rgb(64, 203, 238) !important;
+    margin-right: 20px;
 }
 
-div.simpleImageUpload:before {
-  padding: 0 5px 0 0;
-  content: "Drop Image \A or \A Click Here";
-  position: relative;
-  width: 10px;
-  top: 60px;
-  left: 50px;
+.imageUpload .img-ul-clear {
+    background-color: rgb(230, 36, 130) !important;
+}
+
+.imageUpload .img-ul-drag-box-msg {
+    color: purple !important;
+}
+
+.imageUpload .img-ul-container {
+    background-color: #fff !important;
 }

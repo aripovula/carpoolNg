@@ -1,140 +1,360 @@
 <div ng-controller="AppController" nv-file-drop="" uploader="uploader">
 
-<div class="scrollDiv boxed">
-  <form>
-        <image-upload></image-upload>    
-    
-    
-      <div class="form-element">
-          <label for="">Full name: </label><input type="text" autocomplete="off" name="" size="30">
-      </div>
-    
-      <div class="form-element">
-          <label for="">Your address: </label><input type="text" autocomplete="off" name="" size="30"> ( optional )
-      </div>
+    <div class="scrollDiv boxed">
+        <span style="font-size: 20px;">Your profile:</span>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <image-upload class="imageUpload" buttonCaption="Upload image" dropBoxMessage="Drop image here - stored in LocalStorage in demo-version"
+                clearButtonCaption="Remove" [max]="1" [extensions]="['jpg','jpeg','png','gif']" [maxFileSize]="1048576" (removed)="onRemoved($event)"
+                (uploadFinished)="onUploadFinished($event)" (uploadStateChanged)="onUploadStateChanged($event)">
+            </image-upload>
 
-    <div class="form-element">
-        <label for="">Zip-Code: </label><input type="text" autocomplete="off" name="" size="30">
+            <div 
+            id="addressGroup" 
+            ngModelGroup="addressGroup"
+            #addressGroup="ngModelGroup"
+            >
+                <div class="form-element">
+                    <label>Full name: </label>
+                    <input type="text" autocomplete="off" [(ngModel)]="fullnam" name="fullname" size="30" #fullName="ngModel" required>
+                    <span style="color:red;font-size:14px;" *ngIf="!fullName.valid && fullName.touched">please add a valid full name</span>
+                    <span>{{fullnam}}</span>
+                </div>
+
+                <div class="form-element">
+                    <label>Your address: </label>
+                    <input type="text" autocomplete="off" ngModel name="address" size="30" required> ( optional )
+                </div>
+
+                <div class="form-element">
+                    <label>Zip-Code: </label>
+                    <input type="text" autocomplete="off" ngModel name="zipcode" size="30" required zipcode>
+                </div>
+                <div class="form-element">
+                    <label>State: </label>
+                    <input type="text" autocomplete="off" ngModel name="state" size="30" required>
+                </div>
+                <p style="font-size:12px">*) your address is never disclosed to others. Only used to plan your itinerary</p>
+            </div>
+            <br/><span style="color:red;font-size:14px;" *ngIf="!addressGroup.valid && addressGroup.touched">address field contains errors</span>
+            <hr/>
+            <label>I am a :</label>
+            <span class="horIndent"></span>
+            <label>
+                <input type="radio" ngModel name="gender" value="male"> male</label>
+            <span class="horIndent"></span>
+            <label>
+                <input type="radio" ngModel name="gender" value="female"> female</label>
+            <span class="horIndent"></span>
+            <label>
+                <input type="radio" ngModel name="gender" value="other"> other</label>
+            <span class="horIndent"></span>|
+            <span class="horIndent"></span>
+            <label>
+                <input type="radio" ngModel name="smoker" value="smoker"> smoker</label>
+            <span class="horIndent"></span>
+            <label>
+                <input type="radio" ngModel name="smoker" value="nonesmoker"> non-smoker</label>
+
+            <hr/>
+
+            <div class="" style="  display: flex!important; ">
+                <label>Please describe yourself:
+                    <br/>
+                    <div class="form-group">
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="extravert"> extravert</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="intravert"> intravert</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="joyful"> joyful</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="silent"> silent</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="discusser"> a discusser</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="criticizer"> a criticizer</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="calm"> calm</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="impulsive"> impulsive</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="clean"> clean / tidy</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="messy"> a little messy</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="shy"> shy / timid</label>
+                            <span class="horIndent"></span>
+                        </div>
+                        <div class="wrap">
+                            <label>
+                                <input type="checkbox" ngModel name="aboutme" value="modest"> modest</label>
+                            <span class="horIndent"></span>
+                        </div>
+                    </div>
+                    <label>add any other (optional):
+                        <input type="text" autocomplete="off" ngModel name="musictype" size="30">
+                    </label>
+                </label>
+            </div>
+            <hr/>
+            <label>Interests:</label>
+            <br/>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="sports"> sports</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="politics"> politics</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="economics"> economics</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="science"> science</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="music"> music</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="arts"> arts</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="fiction"> fiction books</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="Interests" value="martial"> martial arts</label>
+                </div>
+                <div class="wrap">
+                    <label>add any other (optional):
+                        <input type="text" autocomplete="off" ngModel name="musictype" size="30">
+                    </label>
+                </div>
+                <!-- </label> -->
+            </div>
+
+            <hr/>
+            <label>Music / song preferences:</label>
+            <br/>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>I prefer:</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="anymusic" value="nomusic"> no music / songs</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="anymusic" value="anymusic"> any music</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="anymusic" value="anyseld"> any selected below</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="pop"> pop</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="smoothjazz"> smooth jazz</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="club"> club</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="softrock"> soft rock</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="religioustalk"> religious talk</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="othertalk"> other talk</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="country"> country</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="checkbox" ngModel name="musictype" value="hardrock"> hard rock</label>
+                </div>
+                <div class="wrap">
+                    <label>add any other (optional):
+                        <input type="text" autocomplete="off" ngModel name="musictype" size="30">
+                    </label>
+                </div>
+                <!-- </label> -->
+            </div>
+            <hr/>
+            <label>I prefer a :</label>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="anytalk" value="mintalk"> minimal talk journeys</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="anytalk" value="modtalk"> moderate talk journeys</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="anytalk" value="any"> does not matter</label>
+                </div>
+            </div>
+            <hr/>
+
+            <label>Ethnic origin:
+                <br/>
+            </label>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="Europe"> Europe</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="Latin"> Latin America</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="Minority"> American - Minority *</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="North-most"> Africa - North-most</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="Other"> Africa - Other</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="MiddleEast"> Asia - Middle East</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="Central"> Asia - Central</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="origin" value="Pacific"> Asia - Pacific</label>
+                </div>
+            </div>
+            *) American Indian, Alaskan Native, Hawaiian Native or Other Pacific Islander
+            <hr/>
+            <label>Do you have any disabilities: </label>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="disabilities" value="no"> No</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="disabilities" value="yes"> Yes</label>
+                </div>
+                <div class="wrap">
+                    <label>Details:
+                        <input type="text" ngModel name="disabilitiesdetails" size="30">
+                    </label>
+                </div>
+            </div>
+            <hr/>
+            <label>Do you have any criminal convictions: </label>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="criminal" value="no"> No</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="criminal" value="yes"> Yes</label>
+                </div>
+                <div class="wrap">
+                    <label>Details:
+                        <input type="text" ngModel name="criminaldetails" size="30">
+                    </label>
+                </div>
+            </div>
+            <hr/>
+            <label>Would you tolerate a pet in a car? </label>
+            <div class="form-group">
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="pet" value="yes"> Yes</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="pet" value="no"> No</label>
+                </div>
+                <div class="wrap">
+                    <label>
+                        <input type="radio" ngModel name="pet" value="depends"> Depends</label>
+                </div>
+                <div class="wrap">
+                    <label>Comment:
+                        <input type="text" ngModel name="petdetails" size="30">
+                    </label>
+                </div>
+            </div>
+            <hr/>
+
+            <label>Any other comment:
+                <input type="text" autocomplete="off" ngModel name="musictype" size="50">
+            </label>
+            <br/>
+            <button type="submit" [disabled]="!f.valid">Submit</button>
+            <br/>
+            <br/>
+        </form>
     </div>
-    <div class="form-element">
-        <label for="">State: </label><input type="text" autocomplete="off" name="" size="30">
-    </div>
-    <p style="font-size:12px">*) your address is never disclosed to others. Used only to plan your itinerary</p>
-    <hr/>
-    <div class="" style="  display: flex!important; ">
-    <label for="">Please describe yourself: <br/>
-      <div class="form-group">
-        <div class="wrap"><label><input type="checkbox" name=""> extravert</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> intravert</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> joyful</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> silent</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> a discusser</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> a criticizer</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> calm</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> impulsive</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> clean / tidy</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> a little messy</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> shy / timid</label><span class="horIndent"></span></div>
-        <div class="wrap"><label><input type="checkbox" name=""> modest</label><span class="horIndent"></span></div>
-      </div>
-      <label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label>
-      </label></div>
-      <hr/>
-      <label for="">Interests:</label>
-      <br/>
-      <div class="form-group">
-          <div class="wrap"><label><input type="checkbox" name=""> sports</label></div>
-          <div class="wrap"><label><input type="checkbox" name=""> politics</label></div>
-          <div class="wrap"><label><input type="checkbox" name=""> ecomics/finance</label></div>
-          <div class="wrap"><label><input type="checkbox" name=""> science</label></div>
-          <div class="wrap"><label><input type="checkbox" name=""> music</label></div>
-          <div class="wrap"><label><input type="checkbox" name=""> arts</label></div>
-          <div class="wrap"><label><input type="checkbox" name=""> fiction books</label></div>
-          <div class="wrap"><label><input type="checkbox" name=""> martial arts</label></div>
-          <div class="wrap"><label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label></div>
-      <!-- </label> -->
-    </div>
-    
-    <label for="">I like talking about these topics:</label>
-    <div class="form-group">
-        <div class="wrap"><label for=""><input type="radio" name=""> usually</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> when others are interested</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> never</label></div>
-    </div>
-    <hr/>
-    <label for="">Music / song preferences:</label>
     <br/>
-    <div class="form-group">
-        <div class="wrap"><label for="">I prefer:</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> no music / songs</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> any music</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> any selected below</label></div>
-    </div>
-    <div class="form-group">
-        <div class="wrap"><label><input type="checkbox" name=""> pop</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> smooth jazz</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> club</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> soft rock</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> religious talk</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> other talk</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> country</label></div>
-        <div class="wrap"><label><input type="checkbox" name=""> hard rock</label></div>
-        <div class="wrap"><label for="">add any other (optional): <input type="text" autocomplete="off" name="" size="30"></label></div>
-    <!-- </label> -->
-  </div>
-  <hr/>
-  <label for="">I prefer a :</label>
-  <div class="form-group">
-    <div class="wrap"><label for=""><input type="radio" name=""> minimal talk ride</label></div>
-    <div class="wrap"><label for=""><input type="radio" name=""> moderate talk ride</label></div>
-    <div class="wrap"><label for=""><input type="radio" name=""> does not matter</label></div>
-  </div>
-  <hr/>
-
-  <label for="">Ethnic origin:<br/></label>
-    <div class="form-group">
-        <div class="wrap"><label for=""><input type="radio" name=""> Europe</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> Latin America</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> American - Minority *</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> Africa - North-most</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> Africa - Other</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> Asia - Middle East</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> Asia - Central</label></div>
-        <div class="wrap"><label for=""><input type="radio" name=""> Asia - Pacific</label></div>
-  </div>
-*) American Indian, Alaskan Native, Hawaiian Native or Other Pacific Islander
-  <hr/>
-  <label for="">Do you have any disabilities: </label>
-  <div class="form-group">
-    <div class="wrap"><label for=""><input type="radio" name=""> No</label></div>
-    <div class="wrap"><label for=""><input type="radio" name=""> Yes</label></div>
-    <div class="wrap"><label for="">Details: <input type="text" name=""  size="30"></label></div>
-  </div>
-  <hr/>
-  <label for="">Do you have any criminal convictions: </label>
-  <div class="form-group">
-    <div class="wrap"><label for=""><input type="radio" name=""> No</label></div>
-    <div class="wrap"><label for=""><input type="radio" name=""> Yes</label></div>
-    <div class="wrap"><label for="">Details: <input type="text" name=""  size="30"></label></div>
-  </div>
-  <hr/>
-  <label for="">Would you tolerate a pet in a car? </label>
-  <div class="form-group">
-    <div class="wrap"><label for=""><input type="radio" name=""> Yes</label></div>
-    <div class="wrap"><label for=""><input type="radio" name=""> No</label></div>
-    <div class="wrap"><label for=""><input type="radio" name=""> Depends</label></div>
-    <div class="wrap"><label for="">Comment: <input type="text" name=""  size="30"></label></div>
-  </div>
-  <hr/>
-
-    <label for="">abc <input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
-    <label for=""><input type="text" autocomplete="off" name="" size="30"></label><br/>
-
-  </form>
-</div>
+    <br/>
+    <br/>
+    <br/>
 </div>

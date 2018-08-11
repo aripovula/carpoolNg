@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
       <app-profile></app-profile>
     </div>
     <div id="right">
-      <app-profile></app-profile>
+      <app-prefs></app-prefs>
     </div>
     </div>
   `,

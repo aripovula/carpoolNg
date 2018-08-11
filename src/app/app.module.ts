@@ -21,6 +21,7 @@ import { LoggingService } from './services/logging.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SetupComponent } from './setup/setup.component';
+import { PrefsComponent } from './prefs/prefs.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { SetupComponent } from './setup/setup.component';
     CompanionDetailsComponent,
     NotFoundComponent,
     SetupComponent,
+    PrefsComponent,
   ],
   imports: [
     BrowserModule,

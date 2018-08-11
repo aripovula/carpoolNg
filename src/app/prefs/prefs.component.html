@@ -1,0 +1,166 @@
+<div ng-controller="AppController" nv-file-drop="" uploader="uploader">
+
+    <div class="scrollDiv boxed">
+      <span style="font-size: 20px;">Please specify your preferred companions:</span>
+      <form>
+        <br/>
+        People residing in:
+        <br/><span class="horIndent"></span>
+        <label><input type="radio" ngModel name="whereby" > any location</label>
+        <br/><span class="horIndent"></span>
+        <label><input type="radio" ngModel name="whereby" > in the same street as mine</label>
+        <br/><span class="horIndent"></span>
+        <label><input type="radio" ngModel name="whereby" > in the same zip-code area as mine</label>
+        <br/><span class="horIndent"></span>
+        <label><input type="radio" ngModel name="whereby" > in the same city / town as mine</label>
+        <br/><span class="horIndent"></span>
+        <label><input type="radio" ngModel name="whereby" > in the same state as mine</label>
+    
+        <hr/>
+        <label>I prefer accompanying :</label><br/>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="genderprefs" value="male"> male</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="genderprefs" value="female"> female</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="genderprefs" value="any"> any</label>
+        <span class="horIndent"></span>|<span class="horIndent"></span>
+        <label><input type="radio" ngModel name="smokerprefs" value="smoker"> smoker</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="smokerprefs" value="non-smoker"> non-smoker</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="smokerprefs" value="any"> any</label>
+    
+        <hr/>
+         <div>
+          <select
+          id="describe"
+          [ngModel]="'include'"
+          name="describe"
+          >
+            <option value="include">Include </option>
+            <option value="exclude">Exclude </option>
+          </select>
+          &nbsp;&nbsp;those who describe them as:
+        </div>
+          <div class="form-group">
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="extravert"> extravert</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="intravert"> intravert</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="joyful"> joyful</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="silent"> silent</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="discusser"> a discusser</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="criticizer"> a criticizer</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="calm"> calm</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="impulsive"> impulsive</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="clean"> clean / tidy</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="messy"> a little messy</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="shy"> shy / timid</label><span class="horIndent"></span></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="aboutthem" value="modest"> modest</label><span class="horIndent"></span></div>
+          </div>
+          <hr/>
+          <div>
+              <select
+              id="describe"
+              [ngModel]="'include'"
+              name="describe"
+              >
+                <option value="include">Include </option>
+                <option value="exclude">Exclude </option>
+              </select>
+                  &nbsp;&nbsp;those interested in:
+            </div>
+              <div class="form-group">
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="sports"> sports</label></div>
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="politics"> politics</label></div>
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="economics"> economics</label></div>
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="science"> science</label></div>
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="music"> music</label></div>
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="arts"> arts</label></div>
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="fiction"> fiction books</label></div>
+              <div class="wrap"><label><input type="checkbox" ngModel name="interested" value="other"> any other</label></div>
+          <!-- </label> -->
+        </div>
+        
+        <hr/>
+        <div>
+            <select
+            id="describe"
+            [ngModel]="'include'"
+            name="describe"
+            >
+              <option value="include">Include </option>
+              <option value="exclude">Exclude </option>
+            </select>
+              &nbsp;&nbsp;those who prefer:
+          </div>
+
+        <label><input type="radio" ngModel name="nomusic" value="nomusic"> no music / songs</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="nomusic" value="anymusic"> any music</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="nomusic" value="anyseld"> any selected below</label>
+
+        <div class="form-group">
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="pop"> pop</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="smooth"> smooth jazz</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="club"> club</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="softrock"> soft rock</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="religioustalk"> religious talk</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="talk"> other talk</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="country"> country</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="musicgenre" value="hardrock"> hard rock</label></div>
+      </div>
+      <hr/>
+      <label>Include those who prefer a :</label>
+      <div class="form-group">
+        <div class="wrap"><label><input type="radio" ngModel name="talkmin" value="min"> minimal talk journeys</label></div>
+        <div class="wrap"><label><input type="radio" ngModel name="talkmin" value="mod"> moderate talk journeys</label></div>
+        <div class="wrap"><label><input type="radio" ngModel name="talkmin" value="any"> does not matter</label></div>
+      </div>
+      <hr/>
+    
+      <select
+      id="describe"
+      [ngModel]="'include'"
+      name="describe"
+      >
+        <option value="include">Include </option>
+        <option value="exclude">Exclude </option>
+      </select>
+    &nbsp;&nbsp;
+      <label>&nbsp; people with ethnic origin from:<br/></label>
+        <div class="form-group">
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="Europe"> Europe</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="Latin"> Latin America</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="Minority"> American - Minority *</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="North"> Africa - North-most</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="Other"> Africa - Other</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="Middle"> Asia - Middle East</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="Central"> Asia - Central</label></div>
+            <div class="wrap"><label><input type="checkbox" ngModel name="origins" value="Pacific"> Asia - Pacific</label></div>
+      </div>
+    *) American Indian, Alaskan Native, Hawaiian Native or Other Pacific Islander
+      <hr/>
+      <label>Include those who have disabilities: </label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="withdisabilities" value="yes"> Yes</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="withdisabilities" value="no"> No</label>
+      <hr/>
+      <label>Include those who have criminal convictions: </label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="criminal" value="yes"> Yes</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="criminal" value="no"> No</label>
+      <hr/>
+      <label>Include those who travel with a pet ? </label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="pets" value="yes"> Yes</label>
+        <span class="horIndent"></span>
+        <label><input type="radio" ngModel name="pets" value="no"> No</label>
+      <hr/>
+        <br/><br/><br/>
+      </form>
+    </div>
+    <br/><br/>
+    </div>
