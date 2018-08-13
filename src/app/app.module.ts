@@ -1,6 +1,7 @@
+import { CfilterPipe } from './filters/cfilter.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ImageUploadModule } from 'angular2-image-upload';
 
@@ -40,10 +41,12 @@ import { PrefsComponent } from './prefs/prefs.component';
     NotFoundComponent,
     SetupComponent,
     PrefsComponent,
+    CfilterPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     ImageUploadModule.forRoot(),

@@ -20,7 +20,7 @@ import { DataService } from './../services/data.service';
   <button (click)="onLookUpNameSelected3(lookUpName3)">Submit</button>
   <br/>
   <div *ngIf="companions">
-    <div *ngFor="let companion of companions; let ind = index">
+    <div *ngFor="let companion of companions | cfilter: lookUpName; let ind = index">
       <div class="post-container" [ngStyle]="{backgroundColor: getBGColor() }">
         <div class="post-thumb">
           <img style="float: right"
@@ -53,7 +53,7 @@ import { DataService } from './../services/data.service';
 
 export class CompanionsListComponent implements OnInit, OnChanges {
   @Output() selectedCompanionID = new EventEmitter<number>();
-  lookUpName = 'Ben';
+  lookUpName = '';
   lookUpName2 = 'Ben';
   @ViewChild('lookUpName3') lookUpName3: ElementRef;
   selectedCompanion = undefined;
@@ -77,6 +77,7 @@ export class CompanionsListComponent implements OnInit, OnChanges {
   ngOnChanges() {
     // const logService = new LoggingService();
     // this.logService.logStatusChange('using Service from Details = ' + this.companionID);
+    // this.logService.logStatusChange('lName' + this.lookUpName);
   }
 
   onLookUpNameSelected(event: Event) {

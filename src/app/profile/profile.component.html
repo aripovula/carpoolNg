@@ -11,14 +11,14 @@
             <div id="addressGroup" ngModelGroup="addressGroup" #addressGroup="ngModelGroup">
                 <div class="form-element">
                     <label>Full name: </label>
-                    <input type="text" autocomplete="off" [(ngModel)]="fullnam" name="fullname" size="30" #fullName="ngModel" required>
+                    <input id="fullname" type="text" autocomplete="off" [(ngModel)]="fullnam" name="fullname" size="30" #fullName="ngModel" required>
                     <span style="color:red;font-size:14px;" *ngIf="!fullName.valid && fullName.touched">please add a valid full name</span>
                     <span>{{fullnam}}</span>
                 </div>
 
                 <div class="form-element">
                     <label>Your address: </label>
-                    <input type="text" autocomplete="off" ngModel name="address" size="30" required> ( optional )
+                    <input id="address" type="text" autocomplete="off" ngModel name="address" size="30" required> ( optional )
                 </div>
 
                 <div class="form-element">
@@ -29,7 +29,7 @@
                     <label>State: </label>
                     <input type="text" autocomplete="off" ngModel name="state" size="30" required>
                 </div>
-                <p style="font-size:12px">*) your address is never disclosed to others. Only used to plan your itinerary</p>
+                <p style="font-size:14px">*) your address is never disclosed to others. Only used to plan your itinerary</p>
             </div>
             <br/>
             <span style="color:red;font-size:14px;" *ngIf="!addressGroup.valid && addressGroup.touched">address field contains errors</span>
@@ -119,7 +119,7 @@
             </span>
             <hr/>
 
-            <label>My ethnic origin - my genealogy substantially derives from people originally from :
+            <label>My ethnic origin - my genealogy substantially derives of people originally from :
                 <br/>
             </label>
             <div class="form-group">
@@ -132,7 +132,7 @@
                 </div>
             </div>
 
-            *) American Indian, Alaskan Native, Hawaiian Native or Other Pacific Islander
+            <p style="font-size:14px">*) American Indian, Alaskan Native, Hawaiian Native or Other Pacific Islander</p>
             <hr/>
             <label>Do you have any disabilities: </label>
             <br/>

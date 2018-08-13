@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements AfterViewInit {
   describemes = ['extravert', 'intravert', 'joyful', 'silent', 'a discusser', 'a criticizer', 'calm', 'impulsive',
 'clean / tidy', 'a little messy', 'shy / timid', 'modest'];
   interests = ['sports', 'politics', 'economics', 'science', 'music', 'arts', 'fiction books', 'martial arts'];
@@ -22,7 +22,11 @@ export class ProfileComponent implements OnInit {
   @ViewChild('f') profileForm: NgForm;
   constructor() { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.profileForm.form.patchValue({
+      fullname: 'Full Name',
+      address: 'abcd 1234'
+    });
   }
 
   onUploadFinished(file: any) {
@@ -48,6 +52,11 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     console.log('Submitted - ViewChild');
     console.log(this.profileForm);
+    this.profileForm.reset();
+    this.profileForm.form.patchValue({
+      fullname: 'Full Name',
+      address: 'abcd 1234'
+    });
   }
 
 }

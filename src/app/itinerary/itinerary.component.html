@@ -1,3 +1,10 @@
-<p>
+<div class="margintop">
   itinerary works!
-</p>
+  <form [formGroup]="itineraryForm" (ngSubmit)="onSubmit()" #f="ngForm">
+    <input type="text" name="departure" formControlName="departure">
+    <input type="text" name="destination" formControlName="destination">
+    <span style="color:red;font-size:14px;" *ngIf="!itineraryForm.get('destination').valid && itineraryForm.get('destination').touched">please add a valid destination name</span>
+    <br/>
+    <button type="submit" [disabled]="!f.valid">Submit</button>
+  </form>
+</div>

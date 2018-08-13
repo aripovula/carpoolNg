@@ -27,15 +27,15 @@ body, html {
 
   input.ng-untouched, input.ng-valid {
     border: none;
-    border-bottom: 2px solid lightseagreen;
+    border: 1px solid lightseagreen;
     margin:4px;
     font-size: 16px;
     background-color: white;
   }  
-  
+
   input.ng-invalid.ng-touched{
     border: none;
-    border-bottom: 2px solid rgb(230, 36, 130);
+    border: 1px solid rgb(230, 36, 130);
     margin:4px;
     font-size: 16px;
     background-color: white;
