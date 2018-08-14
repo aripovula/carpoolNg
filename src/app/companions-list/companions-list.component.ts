@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { FirebaseService } from './../services/firebase.service';
 import { LoggingService } from './../services/logging.service';
 import { DataService } from './../services/data.service';
+import { Response } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-companions-list',
@@ -30,7 +32,7 @@ import { DataService } from './../services/data.service';
             (click)="onCompanionSelected(companion.id)"
           >
           <input style="float: left" type="checkbox" name="selected" value="selected"
-            [checked]="companion.isFrequentlySelected"
+            [checked]="companion.isSelected"
           >
         </div>
         <div class="post-content" [ngClass]="{highlight: ind==1}">
@@ -58,20 +60,22 @@ export class CompanionsListComponent implements OnInit, OnChanges {
   @ViewChild('lookUpName3') lookUpName3: ElementRef;
   selectedCompanion = undefined;
   companionIDforDetails = undefined;
-  companions: { id: number, name: string, rating: number, isFrequentlySelected: boolean, image: string }[] = [];
+  companions: { id: number, name: string, rating: number, isSelected: boolean, image: string }[] = [];
 
   // companions = [
-  //   { id: 1, name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../assets/Alex.jpg' },
-  //   { id: 2, name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../assets/Ben.jpg' },
-  //   { id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../assets/Cathy.jpg' }
+  //   { id: 1, name: 'Alex', rating: 8.4, isSelected: true, image: '../assets/Alex.jpg' },
+  //   { id: 2, name: 'Ben', rating: 8.2, isSelected: false, image: '../assets/Ben.jpg' },
+  //   { id: 3, name: 'Cathy', rating: 8.6, isSelected: true, image: '../assets/Cathy.jpg' }
   // ];
 
-  constructor(private logService: LoggingService, private dataService: DataService, private router: Router) {  }
+  constructor(private logService: LoggingService, private dataService: DataService,
+    private router: Router, private firebaseService: FirebaseService) {  }
 
   ngOnInit() {
     // console.log(this.companions[1]);
     this.companions = this.dataService.companions;
     this.selectedCompanion = this.dataService.companionID;
+    this.getSelectedCompanionsToFirebase();
   }
 
   ngOnChanges() {
@@ -101,7 +105,28 @@ export class CompanionsListComponent implements OnInit, OnChanges {
     // this.selectedCompanionID.emit(id);
     // this.selectedCompanion = id;
     // this.logService.logStatusChange('using Service from List = ' + this.selectedCompanion);
+    console.log('on onCompanionSelected');
     this.dataService.setCompanionID(id);
+    const companionsSelected = this.dataService.handleCompanionSelection(id);
+    if (companionsSelected.length > 1) {
+      this.saveSelectedCompanionsToFirebase(companionsSelected);
+    }
+  }
+
+  saveSelectedCompanionsToFirebase(companionsSelected) {
+    this.firebaseService.saveCompanionsSelected( companionsSelected ).subscribe(
+      (response: Response) => {
+        console.log(response);
+      }
+    );
+  }
+
+  getSelectedCompanionsToFirebase() {
+    this.firebaseService.getCompanionsSelected().subscribe(
+      (response: Response) => {
+        console.log(response);
+      }
+    );
   }
 
   getBGColor() {

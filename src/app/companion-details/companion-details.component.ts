@@ -48,9 +48,9 @@ export class CompanionDetailsComponent implements OnChanges {
   companionID: number;
   // temporary measure
   companions = [
-    { id: 1, name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../assets/Alex.jpg' },
-    { id: 2, name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../assets/Ben.jpg' },
-    { id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../assets/Cathy.jpg' }
+    { id: 1, name: 'Alex', rating: 8.4, isSelected: true, image: '../assets/Alex.jpg' },
+    { id: 2, name: 'Ben', rating: 8.2, isSelected: false, image: '../assets/Ben.jpg' },
+    { id: 3, name: 'Cathy', rating: 8.6, isSelected: true, image: '../assets/Cathy.jpg' }
   ];
 
   constructor(private logService: LoggingService, private dataService: DataService) {

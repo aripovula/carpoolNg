@@ -4,20 +4,21 @@ import { Injectable, EventEmitter } from '@angular/core';
 @Injectable()
 export class DataService {
     companions = [
-        { id: 1, name: 'Alex', rating: 8.4, isFrequentlySelected: true, image: '../assets/Alex.jpg' },
-        { id: 2, name: 'Ben', rating: 8.2, isFrequentlySelected: false, image: '../assets/Ben.jpg' },
-        { id: 3, name: 'Cathy', rating: 8.6, isFrequentlySelected: true, image: '../assets/Cathy.jpg' }
+        { id: 1, name: 'Alex', rating: 8.4, isSelected: true, image: '../assets/Alex.jpg' },
+        { id: 2, name: 'Ben', rating: 8.2, isSelected: false, image: '../assets/Ben.jpg' },
+        { id: 3, name: 'Cathy', rating: 8.6, isSelected: true, image: '../assets/Cathy.jpg' }
     ];
 
     companionID = undefined;
+    companionsSelected = [];
 
     companionIDupdated = new EventEmitter<number>();
 
     constructor(private logService: LoggingService) { }
 
-    addCompanion(id: number, name: string, rating: number, isFrequentlySelected: boolean, image: string) {
+    addCompanion(id: number, name: string, rating: number, isSelected: boolean, image: string) {
         this.companions.push({
-            id, name, rating, isFrequentlySelected, image
+            id, name, rating, isSelected, image
         });
     }
 
@@ -26,4 +27,23 @@ export class DataService {
         this.companionIDupdated.emit(this.companionID);
         this.logService.logStatusChange('using Service from ? = ' + this.companionID);
     }
+
+    handleCompanionSelection(id: number) {
+        this.companions[id - 1].isSelected = !this.companions[id - 1].isSelected;
+        this.clearSelectedCompanion();
+        for (const companion of this.companions) {
+            if (companion.isSelected) {
+                this.companionsSelected.push(companion.id);
+            }
+        }
+        this.logService.logStatusChange('using Service from data.service  companionsSelected = ');
+        this.logService.logStatusChange( this.companionsSelected );
+        return this.companionsSelected;
+    }
+
+    clearSelectedCompanion() {
+        this.companionsSelected.length = 0;
+    }
+
+    getSelectedCompanions() { return this.companionsSelected; }
 }

@@ -1,11 +1,11 @@
-import { CfilterPipe } from './filters/cfilter.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ImageUploadModule } from 'angular2-image-upload';
 
-
+import { CfilterPipe } from './filters/cfilter.pipe';
+import { FirebaseService } from './services/firebase.service';
 import { AppComponent } from './app.component';
 import { CompanionsListComponent } from './companions-list/companions-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,7 +23,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SetupComponent } from './setup/setup.component';
 import { PrefsComponent } from './prefs/prefs.component';
-
 
 @NgModule({
   declarations: [
@@ -51,8 +50,7 @@ import { PrefsComponent } from './prefs/prefs.component';
     AppRoutingModule,
     ImageUploadModule.forRoot(),
   ],
-  providers: [DataService, LoggingService],
+  providers: [DataService, LoggingService, FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
