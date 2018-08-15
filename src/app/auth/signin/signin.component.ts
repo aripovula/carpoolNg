@@ -1,3 +1,5 @@
+import { FirebaseService } from './../../services/firebase.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
   <div>
     <!--<div *ngIf="isModalDisplayed"> -->
+    <form (ngSubmit)="onSignUp(f)" #f="ngForm">
 <div id="myModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -15,25 +18,32 @@ import { Component, OnInit } from '@angular/core';
       <p>Some text in the Modal Body</p>
       <p>Some other text...</p>
       <input
+        id="email"
+        name="email"
         type="text"
         size="40"
+        ngModel
       />
       <br/>
       <input
+        id="password"
+        name="password"
         type="password"
         size="40"
+        ngModel
       />
 
       <br/><br/>
       <button
+      type="submit"
       class="button button1"
-      (click)="onLoginSelected()"
       >Login</button>
       <br/><br/>
     </div>
   </div>
   </div>
 <!--</div>-->
+</form>
 </div>
   `,
   styleUrls: ['./signin.component.css'],
@@ -43,13 +53,17 @@ import { Component, OnInit } from '@angular/core';
 export class SigninComponent implements OnInit {
   // isModalDisplayed = true;
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
+
   }
 
-  onLoginSelected() {
-    console.log('in MODAL');
+  onSignUp(form: NgForm) {
+    const email = form.value.email;
+    const password = form.value.password;
+    console.log('in MODAL ' + email + ' ' + password);
+    this.firebaseService.signUpAUser(email, password);
   }
 
   // onCloseSelected() {

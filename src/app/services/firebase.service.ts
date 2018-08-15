@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import * as firebase from 'firebase';
 
 import { DataService } from './data.service';
 import { LoggingService } from './../services/logging.service';
@@ -21,5 +22,16 @@ export class FirebaseService {
     return this.http.get('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json');
   }
 
+  logInAUser() {
+
+  }
+
+  signUpAUser(email: string, password: string) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then()
+    .catch(
+      error => console.log(error)
+    );
+  }
 
 }
