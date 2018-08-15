@@ -23,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SetupComponent } from './setup/setup.component';
 import { PrefsComponent } from './prefs/prefs.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PrefsComponent } from './prefs/prefs.component';
     NotFoundComponent,
     SetupComponent,
     PrefsComponent,
-    CfilterPipe
+    CfilterPipe,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

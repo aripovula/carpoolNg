@@ -1,3 +1,4 @@
+import { SigninComponent } from './auth/signin/signin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'feedback/:id/:name', component: FeedbackComponent},
     { path: 'profile', component: SetupComponent},
     { path: 'params', component: ParamsComponent},
+    { path: 'signin', component: SigninComponent},
     { path: 'not-found', component: NotFoundComponent},
     { path: '**', redirectTo: '/not-found' }
   ];
