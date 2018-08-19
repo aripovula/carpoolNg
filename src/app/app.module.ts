@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ImageUploadModule } from 'angular2-image-upload';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 import { CfilterPipe } from './filters/cfilter.pipe';
 import { FirebaseService } from './services/firebase.service';
@@ -51,6 +52,7 @@ import { SigninComponent } from './auth/signin/signin.component';
     HttpModule,
     AppRoutingModule,
     ImageUploadModule.forRoot(),
+    NgDatepickerModule
   ],
   providers: [DataService, LoggingService, FirebaseService],
   bootstrap: [AppComponent]

@@ -21,7 +21,7 @@ import { Component, OnInit } from '@angular/core';
         id="email"
         name="email"
         type="text"
-        size="40"
+        size="30"
         ngModel
       />
       <br/>
@@ -29,7 +29,7 @@ import { Component, OnInit } from '@angular/core';
         id="password"
         name="password"
         type="password"
-        size="40"
+        size="30"
         ngModel
       />
 
