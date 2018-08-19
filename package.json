@@ -25,7 +25,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.3.1",
     "hoek": "^5.0.3",
-    "ng2-datepicker": "^3.1.1",
+    "ng2-date-picker": "^2.10.2",
     "parsejson": "0.0.3",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.2",
