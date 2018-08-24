@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { CfilterPipe } from './filters/cfilter.pipe';
 import { FirebaseService } from './services/firebase.service';
@@ -48,13 +50,16 @@ import { SigninComponent } from './auth/signin/signin.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     ImageUploadModule.forRoot(),
     DpDatePickerModule,
-    NgDatepickerModule
+    NgDatepickerModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   providers: [DataService, LoggingService, FirebaseService],
   bootstrap: [AppComponent]
