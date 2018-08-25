@@ -29,8 +29,6 @@
     "hoek": "^5.0.3",
     "moment": "^2.22.2",
     "ng-pick-datetime": "^6.0.15",
-    "ng2-date-picker": "^2.10.2",
-    "ng2-datepicker": "^3.1.1",
     "parsejson": "0.0.3",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.2",

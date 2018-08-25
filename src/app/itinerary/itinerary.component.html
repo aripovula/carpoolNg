@@ -10,27 +10,19 @@
       <input type="text" formControlName="destination">
       <span style="color:red;font-size:14px;" *ngIf="!itineraryForm.get('destination').valid && itineraryForm.get('destination').touched">please add a valid destination name</span>
       <br/><br/>
-      <!-- <dp-date-picker formControlName="tripDate" [config]="datePickerConfig"></dp-date-picker> -->
-      <!-- <input name="someName" formControlName="tripDate" [dpDayPicker]="config" mode="day" />
-      <input name="someName" formControlName="tripTime" [dpDayPicker]="config" mode="time" displayTime=`0:00`/> -->
-
-      <!-- <ng-datepicker formControlName="tripDate"></ng-datepicker>  -->
-
+      
       <label>
         Date:&nbsp;
-        <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
+        <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="tripDate">
         <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
     </label>
     <span class="horIndent"></span>
     <label>
         Time:&nbsp;
-        <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
-        <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+        <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" formControlName="tripTime">
+        <owl-date-time [pickerType]="'timer'" #dt4 hour12Timer="true"></owl-date-time>
     </label>
 
-      <!-- <dp-time-select formControlName="tripTime" [config]="config"></dp-time-select>  -->
-      <!-- <dp-day-time-calendar></dp-day-time-calendar>  -->
-      <!-- <input class="dp-picker-input ng-pristine ng-valid ng-touched" type="text" placeholder="Choose a date..."> -->
       <br/>
       <button class="button button1" type="submit" [disabled]="!f.valid">Submit</button>
     </div>

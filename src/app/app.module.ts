@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ImageUploadModule } from 'angular2-image-upload';
-import { DpDatePickerModule } from 'ng2-date-picker';
-import { NgDatepickerModule } from 'ng2-datepicker';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { CfilterPipe } from './filters/cfilter.pipe';
@@ -56,8 +54,6 @@ import { SigninComponent } from './auth/signin/signin.component';
     HttpModule,
     AppRoutingModule,
     ImageUploadModule.forRoot(),
-    DpDatePickerModule,
-    NgDatepickerModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule
   ],
