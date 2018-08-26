@@ -1,30 +1,43 @@
-
 <div class="margintop">
-  itinerary works!
-  <form [formGroup]="itineraryForm" (ngSubmit)="onSubmit()" #f="ngForm">
-    <div class="centered">
-      <span>From: &nbsp;</span>
-      <input type="text" formControlName="departure">
-      <span class="horIndent"></span>
-      <span>To: &nbsp;</span>
-      <input type="text" formControlName="destination">
-      <span style="color:red;font-size:14px;" *ngIf="!itineraryForm.get('destination').valid && itineraryForm.get('destination').touched">please add a valid destination name</span>
-      <br/><br/>
-      
-      <label>
-        Date:&nbsp;
-        <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="tripDate">
-        <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
-    </label>
-    <span class="horIndent"></span>
-    <label>
-        Time:&nbsp;
-        <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" formControlName="tripTime">
-        <owl-date-time [pickerType]="'timer'" #dt4 hour12Timer="true"></owl-date-time>
-    </label>
+  <div id="container" class="margintop">
+    <div id="left">
+      <form [formGroup]="itineraryForm" (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="">
+          <div id="addressGroup" ngModelGroup="addressGroup" #addressGroup="ngModelGroup">
+            
+            <div class="form-element">
+              <span>From: &nbsp;</span>
+              <input type="text" formControlName="departure">
+              <span class="horIndent"></span>
+            </div>
+            <br/>
+            <div class="form-element">
+              <span>To: &nbsp;</span>
+              <input type="text" formControlName="destination">
+              <span style="color:red;font-size:14px;" *ngIf="!itineraryForm.get('destination').valid && itineraryForm.get('destination').touched">please add a valid destination name</span>
+            </div>
+            <br/>
+            <div class="form-element">
+              <span>Date: &nbsp;</span>
+              <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="tripDate">
+              <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+            </div>
+            <br/>
+            <div class="form-element">
+              <span>Time: &nbsp;</span>
+              <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" formControlName="tripTime">
+              <owl-date-time [pickerType]="'timer'" #dt4 hour12Timer="true"></owl-date-time>
+            </div>
 
-      <br/>
-      <button class="button button1" type="submit" [disabled]="!f.valid">Submit</button>
+            <br/>
+            <button class="button button1" type="submit" [disabled]="!f.valid">Submit</button>
+          </div>
+
+        </div>
+      </form>
     </div>
-  </form>
+    <div id="right">
+      map goes here
+    </div>
+  </div>
 </div>
