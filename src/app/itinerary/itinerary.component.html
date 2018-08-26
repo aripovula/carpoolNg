@@ -1,37 +1,43 @@
 <div class="margintop">
   <div id="container" class="margintop">
     <div id="left">
-      <form [formGroup]="itineraryForm" (ngSubmit)="onSubmit()" #f="ngForm">
-        <div class="">
-          <div id="addressGroup" ngModelGroup="addressGroup" #addressGroup="ngModelGroup">
-            
-            <div class="form-element">
-              <span>From: &nbsp;</span>
-              <input type="text" formControlName="departure">
-              <span class="horIndent"></span>
-            </div>
-            <br/>
-            <div class="form-element">
-              <span>To: &nbsp;</span>
-              <input type="text" formControlName="destination">
-              <span style="color:red;font-size:14px;" *ngIf="!itineraryForm.get('destination').valid && itineraryForm.get('destination').touched">please add a valid destination name</span>
-            </div>
-            <br/>
-            <div class="form-element">
-              <span>Date: &nbsp;</span>
-              <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="tripDate">
-              <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
-            </div>
-            <br/>
-            <div class="form-element">
-              <span>Time: &nbsp;</span>
-              <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" formControlName="tripTime">
-              <owl-date-time [pickerType]="'timer'" #dt4 hour12Timer="true"></owl-date-time>
-            </div>
 
-            <br/>
-            <button class="button button1" type="submit" [disabled]="!f.valid">Submit</button>
+      <span class="verIndent"></span>
+      <span class="verIndent"></span>
+      <form [formGroup]="itineraryForm" (ngSubmit)="onSubmit()" #f="ngForm" style="margin-left:15%;margin-top:20%">
+        <div>
+          <!-- <div id="itineraryGroup" ngModelGroup="itineraryGroup" #itineraryGroup="ngModelGroup"> -->
+
+          <div class="form-element">
+            <label>From:</label>
+            <input type="text" formControlName="departure" size="40">
           </div>
+          <!-- <br/> -->
+          <div class="form-element">
+            <label>To:</label>
+            <input type="text" formControlName="destination" size="40">
+            <p style="color:red;font-size:14px;margin-left:104px" *ngIf="!itineraryForm.get('destination').valid && itineraryForm.get('destination').touched">please add a valid destination name</p>
+          </div>
+          <!-- <br/> -->
+          <div class="form-element">
+            <label>Date:</label>
+            <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="tripDate" size="40">
+            <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+          </div>
+          <!-- <br/> -->
+          <div class="form-element">
+            <label>Time:</label>
+            <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" formControlName="tripTime" size="40">
+            <owl-date-time [pickerType]="'timer'" #dt4 hour12Timer="true"></owl-date-time>
+          </div>
+
+          <div class="form-element">
+              <label></label>
+              <!-- <input class="button button1" type="submit" value="Submit" [disabled]="!f.valid">
+              <br/> -->
+            <input class="button button1" type="submit" [disabled]="!f.valid" value="Submit">
+          </div>
+          <!-- </div> -->
 
         </div>
       </form>
