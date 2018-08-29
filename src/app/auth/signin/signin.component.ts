@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-signin',
   template: `
   <div>
+  <br/><br/>
+  Sign in form
     <!--<div *ngIf="isModalDisplayed"> -->
     <form (ngSubmit)="onSignUp(f)" #f="ngForm">
 <div id="myModal" class="modal">
