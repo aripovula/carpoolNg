@@ -10,7 +10,7 @@ import { LoggingService } from './../services/logging.service';
 })
 
 export class FirebaseService {
-  constructor(private http: Http, private logService: LoggingService) {}
+  constructor(private http: Http, private logService: LoggingService) { }
 
   saveCompanionsSelected(selectedCompanions) {
     this.logService.logStatusChange('in saveCompanionsSelected');
@@ -28,10 +28,25 @@ export class FirebaseService {
 
   signUpAUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then()
-    .catch(
-      error => console.log(error)
-    );
+      .then(
+        response => console.log('Sign up success', response)
+      )
+      .catch(
+        error => {
+          console.log('error, sending to signIn', error);
+          this.signInAUser(email, password);
+        }
+      );
+  }
+
+  signInAUser(email: string, password: string) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(
+        response => console.log('Log in success', response)
+      )
+      .catch(
+        error => console.log(error)
+      );
   }
 
 }
