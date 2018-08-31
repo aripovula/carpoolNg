@@ -31,8 +31,9 @@ import { Response } from 'selenium-webdriver/http';
             width="62" height="55"
             (click)="onCompanionSelected(companion.id)"
           >
-          <input style="float: left" type="checkbox" name="selected" value="selected"
+          <input style="float: left" id = "{{ind}}" type="checkbox" name="selected" value="selected"
             [checked]="companion.isSelected"
+            (change)="onCompanionSelectedCB($event)"
           >
         </div>
         <div class="post-content" [ngClass]="{highlight: ind==1}">
@@ -75,7 +76,7 @@ export class CompanionsListComponent implements OnInit, OnChanges {
     // console.log(this.companions[1]);
     this.companions = this.dataService.companions;
     this.selectedCompanion = this.dataService.companionID;
-    this.getSelectedCompanionsToFirebase();
+    this.getSelectedCompanionsFromFirebase();
   }
 
   ngOnChanges() {
@@ -101,13 +102,26 @@ export class CompanionsListComponent implements OnInit, OnChanges {
     console.log('3' + this.lookUpName3);
   }
 
+  // when companion's image clicked
   onCompanionSelected(id: number) {
     // this.selectedCompanionID.emit(id);
     // this.selectedCompanion = id;
     // this.logService.logStatusChange('using Service from List = ' + this.selectedCompanion);
-    console.log('on onCompanionSelected');
     this.dataService.setCompanionID(id);
     const companionsSelected = this.dataService.handleCompanionSelection(id);
+    console.log('on onCompanionSelected', companionsSelected);
+    if (companionsSelected.length > 1) {
+      this.saveSelectedCompanionsToFirebase(companionsSelected);
+    }
+  }
+
+  // when companion's checkbox clicked
+  onCompanionSelectedCB(event) {
+    const id = parseInt(event.target.id, 10) + 1;
+    console.log(id);
+    this.dataService.setCompanionID(id);
+    const companionsSelected = this.dataService.handleCompanionSelection(id);
+    console.log('on onCompanionSelected', companionsSelected);
     if (companionsSelected.length > 1) {
       this.saveSelectedCompanionsToFirebase(companionsSelected);
     }
@@ -121,10 +135,12 @@ export class CompanionsListComponent implements OnInit, OnChanges {
     );
   }
 
-  getSelectedCompanionsToFirebase() {
+  getSelectedCompanionsFromFirebase() {
     this.firebaseService.getCompanionsSelected().subscribe(
       (response: Response) => {
-        console.log(response);
+        const companionsSelectedFromDB = response['_body'].substring(1, response['_body'].length - 1);
+        console.log(companionsSelectedFromDB);
+        this.dataService.setCompanionsSelected(companionsSelectedFromDB.split(','));
       }
     );
   }

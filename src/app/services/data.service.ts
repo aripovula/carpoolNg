@@ -1,4 +1,5 @@
 import { LoggingService } from './../services/logging.service';
+import { FirebaseService } from './../services/firebase.service';
 import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
@@ -14,7 +15,7 @@ export class DataService {
 
     companionIDupdated = new EventEmitter<number>();
 
-    constructor(private logService: LoggingService) { }
+    constructor(private logService: LoggingService, private fbService: FirebaseService) { }
 
     addCompanion(id: number, name: string, rating: number, isSelected: boolean, image: string) {
         this.companions.push({
@@ -28,7 +29,21 @@ export class DataService {
         this.logService.logStatusChange('using Service from ? = ' + this.companionID);
     }
 
+    setCompanionsSelected(companionsSelectedFromDB: Array<number>) {
+        for (const companionSelectedFromDB of companionsSelectedFromDB) {
+            console.log('companionSelectedFromDB = ' + companionSelectedFromDB);
+            this.companions[companionSelectedFromDB - 1].isSelected = true;
+        }
+    }
+
     handleCompanionSelection(id: number) {
+        let tokenM = '';
+        this.fbService.getToken()
+        .then(
+            (token: string) => {
+                tokenM = token;
+            }
+        );
         this.companions[id - 1].isSelected = !this.companions[id - 1].isSelected;
         this.clearSelectedCompanion();
         for (const companion of this.companions) {

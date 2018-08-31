@@ -29,7 +29,7 @@ export class FirebaseService {
   signUpAUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
-        response => console.log('Sign up success', response)
+        response => console.log('Sign upçç success', response)
       )
       .catch(
         error => {
@@ -47,6 +47,10 @@ export class FirebaseService {
       .catch(
         error => console.log(error)
       );
+  }
+
+  getToken() {
+    return firebase.auth().currentUser.getIdToken();
   }
 
 }
