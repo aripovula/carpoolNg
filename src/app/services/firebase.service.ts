@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromPromise';
+import { mergeMap } from 'rxjs/operators';
 
 import { DataService } from './data.service';
 import { LoggingService } from './../services/logging.service';
@@ -13,8 +17,23 @@ export class FirebaseService {
   constructor(private http: Http, private logService: LoggingService) { }
 
   saveCompanionsSelected(selectedCompanions) {
-    this.logService.logStatusChange('in saveCompanionsSelected');
-    return this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json', selectedCompanions);
+
+    return Observable
+      .fromPromise(firebase.auth().currentUser.getIdToken())
+      .pipe(
+      mergeMap(token =>
+        this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token, selectedCompanions)
+      ));
+
+    // // let tokenM = '';
+    // .then(
+    //     (token: string) => {
+    //         // tokenM = token;
+    //     }
+    // );
+
+    // this.logService.logStatusChange('in saveCompanionsSelected');
+    // return this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json', selectedCompanions);
   }
 
   getCompanionsSelected() {

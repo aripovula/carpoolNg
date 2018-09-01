@@ -37,13 +37,6 @@ export class DataService {
     }
 
     handleCompanionSelection(id: number) {
-        let tokenM = '';
-        this.fbService.getToken()
-        .then(
-            (token: string) => {
-                tokenM = token;
-            }
-        );
         this.companions[id - 1].isSelected = !this.companions[id - 1].isSelected;
         this.clearSelectedCompanion();
         for (const companion of this.companions) {
