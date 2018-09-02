@@ -5,9 +5,9 @@ import { Injectable, EventEmitter } from '@angular/core';
 @Injectable()
 export class DataService {
     companions = [
-        { id: 1, name: 'Alex', rating: 8.4, isSelected: true, image: '../assets/Alex.jpg' },
+        { id: 1, name: 'Alex', rating: 8.4, isSelected: false, image: '../assets/Alex.jpg' },
         { id: 2, name: 'Ben', rating: 8.2, isSelected: false, image: '../assets/Ben.jpg' },
-        { id: 3, name: 'Cathy', rating: 8.6, isSelected: true, image: '../assets/Cathy.jpg' }
+        { id: 3, name: 'Cathy', rating: 8.6, isSelected: false, image: '../assets/Cathy.jpg' }
     ];
 
     companionID = undefined;

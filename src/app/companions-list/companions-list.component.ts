@@ -51,7 +51,7 @@ import { Response } from 'selenium-webdriver/http';
 </div>
   `,
   styleUrls: ['./companions-list.component.css'],
-  providers: [ ]
+  providers: []
 })
 
 export class CompanionsListComponent implements OnInit, OnChanges {
@@ -70,7 +70,7 @@ export class CompanionsListComponent implements OnInit, OnChanges {
   // ];
 
   constructor(private logService: LoggingService, private dataService: DataService,
-    private router: Router, private firebaseService: FirebaseService) {  }
+    private router: Router, private firebaseService: FirebaseService) { }
 
   ngOnInit() {
     // console.log(this.companions[1]);
@@ -110,9 +110,9 @@ export class CompanionsListComponent implements OnInit, OnChanges {
     this.dataService.setCompanionID(id);
     const companionsSelected = this.dataService.handleCompanionSelection(id);
     console.log('on onCompanionSelected', companionsSelected);
-    if (companionsSelected.length > 1) {
+    // if (companionsSelected.length > 0) {
       this.saveSelectedCompanionsToFirebase(companionsSelected);
-    }
+    // }
   }
 
   // when companion's checkbox clicked
@@ -122,27 +122,34 @@ export class CompanionsListComponent implements OnInit, OnChanges {
     this.dataService.setCompanionID(id);
     const companionsSelected = this.dataService.handleCompanionSelection(id);
     console.log('on onCompanionSelected', companionsSelected);
-    if (companionsSelected.length > 1) {
+    // if (companionsSelected.length > 0) {
       this.saveSelectedCompanionsToFirebase(companionsSelected);
-    }
+    // }
   }
 
   saveSelectedCompanionsToFirebase(companionsSelected) {
-    this.firebaseService.saveCompanionsSelected( companionsSelected ).subscribe(
-      (response: Response) => {
-        console.log(response);
-      }
-    );
+    if (this.firebaseService.checkLoginStatus() != null) {
+      this.firebaseService.saveCompanionsSelected(companionsSelected).subscribe(
+        (response: Response) => {
+          console.log(response);
+        }
+      );
+    }
   }
 
   getSelectedCompanionsFromFirebase() {
-    this.firebaseService.getCompanionsSelected().subscribe(
-      (response: Response) => {
-        const companionsSelectedFromDB = response['_body'].substring(1, response['_body'].length - 1);
-        console.log(companionsSelectedFromDB);
-        this.dataService.setCompanionsSelected(companionsSelectedFromDB.split(','));
-      }
-    );
+    if (this.firebaseService.checkLoginStatus() != null) {
+      this.firebaseService.getCompanionsSelected().subscribe(
+        (response: number[]) => {
+          console.log('response', response);
+
+          // const companionsSelectedFromDB = response['_body'].substring(1, response['_body'].length - 1);
+          // console.log(companionsSelectedFromDB);
+          // this.dataService.setCompanionsSelected(companionsSelectedFromDB.split(','));
+          this.dataService.setCompanionsSelected(response);
+        }
+      );
+    }
   }
 
   getBGColor() {

@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import { mergeMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { DataService } from './data.service';
 import { LoggingService } from './../services/logging.service';
@@ -17,13 +18,22 @@ export class FirebaseService {
   constructor(private http: Http, private logService: LoggingService) { }
 
   saveCompanionsSelected(selectedCompanions) {
+    this.logService.logStatusChange('in getCompanionsSelected2  firebase.auth() = ' + firebase.auth().currentUser);
+    if (firebase.auth().currentUser != null) {
+      const tokenObs = Observable.fromPromise(firebase.auth().currentUser.getIdToken());
 
-    return Observable
-      .fromPromise(firebase.auth().currentUser.getIdToken())
-      .pipe(
-      mergeMap(token =>
-        this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token, selectedCompanions)
-      ));
+      return tokenObs
+        .pipe(mergeMap(token => this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token
+        , selectedCompanions)))
+        .pipe(map(resp => resp.json()));
+    }
+
+    // return Observable
+    //   .fromPromise(firebase.auth().currentUser.getIdToken())
+    //   .pipe(
+    //     mergeMap(token =>
+    //       this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token, selectedCompanions)
+    //     ));
 
     // // let tokenM = '';
     // .then(
@@ -37,8 +47,20 @@ export class FirebaseService {
   }
 
   getCompanionsSelected() {
-    this.logService.logStatusChange('in getCompanionsSelected');
-    return this.http.get('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json');
+    this.logService.logStatusChange('in getCompanionsSelected2  firebase.auth() = ' + firebase.auth().currentUser);
+    if (firebase.auth().currentUser != null) {
+      const tokenObs = Observable.fromPromise(firebase.auth().currentUser.getIdToken());
+
+      return tokenObs
+        .pipe(mergeMap(token => this.http.get('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token)))
+        .pipe(map(resp => resp.json()));
+    }
+  }
+
+  checkLoginStatus() {
+    const currentUser = firebase.auth().currentUser;
+    console.log('firebase.auth().currentUser = ', currentUser);
+    return currentUser;
   }
 
   logInAUser() {
