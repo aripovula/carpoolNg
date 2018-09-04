@@ -131,7 +131,7 @@ export class CompanionsListComponent implements OnInit, OnChanges {
     if (this.firebaseService.checkLoginStatus() != null) {
       this.firebaseService.saveCompanionsSelected(companionsSelected).subscribe(
         (response: Response) => {
-          console.log(response);
+          console.log('response after SAVE', response);
         }
       );
     }

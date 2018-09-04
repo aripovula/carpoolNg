@@ -15,16 +15,16 @@ import { LoggingService } from './../services/logging.service';
 })
 
 export class FirebaseService {
+  token;
   constructor(private http: Http, private logService: LoggingService) { }
 
   saveCompanionsSelected(selectedCompanions) {
     this.logService.logStatusChange('in getCompanionsSelected2  firebase.auth() = ' + firebase.auth().currentUser);
     if (firebase.auth().currentUser != null) {
       const tokenObs = Observable.fromPromise(firebase.auth().currentUser.getIdToken());
-
       return tokenObs
         .pipe(mergeMap(token => this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token
-        , selectedCompanions)))
+          , selectedCompanions)))
         .pipe(map(resp => resp.json()));
     }
 
@@ -48,6 +48,8 @@ export class FirebaseService {
 
   getCompanionsSelected() {
     this.logService.logStatusChange('in getCompanionsSelected2  firebase.auth() = ' + firebase.auth().currentUser);
+    console.log('token = ', this.token);
+    this.token = this.getToken();
     if (firebase.auth().currentUser != null) {
       const tokenObs = Observable.fromPromise(firebase.auth().currentUser.getIdToken());
 
@@ -55,6 +57,19 @@ export class FirebaseService {
         .pipe(mergeMap(token => this.http.get('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token)))
         .pipe(map(resp => resp.json()));
     }
+  }
+
+  isAuthenticated() {
+    firebase.auth().onAuthStateChanged(function (user) {
+      console.log('in onAuthStateChanged uder = ', user);
+      if (user) {
+        console.log(' LOGGED IN ');
+        return true;
+      } else {
+        console.log(' NOT LOGGED IN ', user);
+        return false;
+      }
+    });
   }
 
   checkLoginStatus() {
@@ -88,6 +103,10 @@ export class FirebaseService {
       .catch(
         error => console.log(error)
       );
+  }
+
+  signOut() {
+    firebase.auth().signOut();
   }
 
   getToken() {

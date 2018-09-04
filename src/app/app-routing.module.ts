@@ -1,7 +1,7 @@
-import { SigninComponent } from './auth/signin/signin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { SigninComponent } from './auth/signin/signin.component';
 import { ItineraryComponent } from './itinerary/itinerary.component';
 import { SelectComponent } from './select/select.component';
 import { SetupComponent } from './setup/setup.component';
@@ -17,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'profile', component: SetupComponent},
     { path: 'params', component: ParamsComponent},
     { path: 'signin', component: SigninComponent},
+    // { path: 'signout', component: SigninComponent},
     { path: 'not-found', component: NotFoundComponent},
     { path: '**', redirectTo: '/not-found' }
   ];
