@@ -9,14 +9,15 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ParamsComponent } from './params/params.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
-    { path: '', component: ItineraryComponent},
-    { path: 'select', component: SelectComponent},
-    { path: 'feedback/:id/:name', component: FeedbackComponent},
-    { path: 'profile', component: SetupComponent},
-    { path: 'params', component: ParamsComponent},
-    { path: 'signin', component: SigninComponent},
+    { path: '', component: ItineraryComponent, canActivate: [AuthGuard]  },
+    { path: 'select', component: SelectComponent, canActivate: [AuthGuard]  },
+    { path: 'feedback/:id/:name', component: FeedbackComponent, canActivate: [AuthGuard]  },
+    { path: 'profile', component: SetupComponent, canActivate: [AuthGuard]  },
+    { path: 'params', component: ParamsComponent, canActivate: [AuthGuard]  },
+    { path: 'login', component: SigninComponent},
     // { path: 'signout', component: SigninComponent},
     { path: 'not-found', component: NotFoundComponent},
     { path: '**', redirectTo: '/not-found' }

@@ -16,6 +16,8 @@ import { LoggingService } from './../services/logging.service';
 
 export class FirebaseService {
   token;
+  userLoggedIn = false;
+
   constructor(private http: Http, private logService: LoggingService) { }
 
   saveCompanionsSelected(selectedCompanions) {
@@ -59,14 +61,32 @@ export class FirebaseService {
     }
   }
 
-  isAuthenticated() {
+  isAuthenticatedObserver() {
     firebase.auth().onAuthStateChanged(function (user) {
-      console.log('in onAuthStateChanged uder = ', user);
+      console.log('in onAuthStateChanged, user = ', user);
       if (user) {
-        console.log(' LOGGED IN ');
+        this.userLoggedIn = true;
+        console.log('LOGGED IN');
+      } else {
+        this.userLoggedIn = false;
+        console.log('NOT LOGGED IN');
+      }
+      console.log('this.userLoggedIn = ' + this.userLoggedIn);
+    });
+  }
+
+  isAuthenticated() {
+    console.log('this.userLoggedIn in isAuthenticated 222233333 = ' + this.userLoggedIn);
+    // return this.userLoggedIn;
+    return true;
+  }
+
+  authState = () => {
+    return firebase.auth().onAuthStateChanged(function (user) {
+      console.log('in onAuthStateChanged, user = ', user);
+      if (user) {
         return true;
       } else {
-        console.log(' NOT LOGGED IN ', user);
         return false;
       }
     });
@@ -85,7 +105,7 @@ export class FirebaseService {
   signUpAUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
-        response => console.log('Sign upçç success', response)
+        response => console.log('Sign up success', response)
       )
       .catch(
         error => {

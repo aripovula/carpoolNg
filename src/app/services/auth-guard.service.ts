@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor() { }
+  constructor(public firebaseService: FirebaseService, public router: Router ) { }
 
-  canActivate() {
-    console.log('AuthGuard#canActivate called');
+  canActivate(): boolean {
+    console.log('in canActivate QQQQQQQAAAAAASSSSSEEEEE', this.firebaseService.isAuthenticated());
+    if (!this.firebaseService.isAuthenticated()) {
+      this.router.navigate(['login']);
+      return false;
+    }
     return true;
   }
 }

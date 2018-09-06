@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
       apiKey: envVars.apiKey,
       authDomain: envVars.authDomain
     });
+
+    this.firebaseService.isAuthenticatedObserver();
     this.firebaseService.isAuthenticated();
   }
 
