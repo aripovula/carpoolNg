@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import { mergeMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { DataService } from './data.service';
 import { LoggingService } from './../services/logging.service';
@@ -17,8 +18,11 @@ import { LoggingService } from './../services/logging.service';
 export class FirebaseService {
   token;
   userLoggedIn = false;
+  that = this;
 
-  constructor(private http: Http, private logService: LoggingService) { }
+  constructor(private http: Http, private logService: LoggingService, private router: Router ) {
+    console.log('in Const FB srv');
+   }
 
   saveCompanionsSelected(selectedCompanions) {
     this.logService.logStatusChange('in getCompanionsSelected2  firebase.auth() = ' + firebase.auth().currentUser);
@@ -61,36 +65,37 @@ export class FirebaseService {
     }
   }
 
-  isAuthenticatedObserver() {
-    firebase.auth().onAuthStateChanged(function (user) {
-      console.log('in onAuthStateChanged, user = ', user);
-      if (user) {
-        this.userLoggedIn = true;
-        console.log('LOGGED IN');
-      } else {
-        this.userLoggedIn = false;
-        console.log('NOT LOGGED IN');
-      }
-      console.log('this.userLoggedIn = ' + this.userLoggedIn);
-    });
-  }
+  // isAuthenticatedObserver() {
+  //   firebase.auth().onAuthStateChanged(function (user) {
+  //     console.log('in onAuthStateChanged Observer, user = ', user);
+  //     if (user) {
+  //       this.userLoggedIn = true;
+  //       console.log('LOGGED IN');
+  //       this.that.router.navigate(['/']);
+  //     } else {
+  //       this.userLoggedIn = false;
+  //       console.log('NOT LOGGED IN');
+  //     }
+  //     console.log('this.userLoggedIn = ' + this.userLoggedIn);
+  //   });
+  // }
 
-  isAuthenticated() {
-    console.log('this.userLoggedIn in isAuthenticated 222233333 = ' + this.userLoggedIn);
-    // return this.userLoggedIn;
-    return true;
-  }
+  // isAuthenticated() {
+  //   console.log('this.userLoggedIn in isAuthenticated in FirebaseService = ' + this.userLoggedIn);
+  //   // return this.userLoggedIn;
+  //   return true;
+  // }
 
-  authState = () => {
-    return firebase.auth().onAuthStateChanged(function (user) {
-      console.log('in onAuthStateChanged, user = ', user);
-      if (user) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-  }
+  // authState = () => {
+  //   return firebase.auth().onAuthStateChanged(function (user) {
+  //     console.log('in onAuthStateChanged, user = ', user);
+  //     if (user) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   });
+  // }
 
   checkLoginStatus() {
     const currentUser = firebase.auth().currentUser;
