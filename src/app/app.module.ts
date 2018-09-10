@@ -30,6 +30,7 @@ import { PrefsComponent } from './prefs/prefs.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { authReducer } from './ngrx-reducers/auth.reducer';
 import { counterReducer } from './ngrx-reducers/counter.reducer';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { counterReducer } from './ngrx-reducers/counter.reducer';
     PrefsComponent,
     CfilterPipe,
     SigninComponent,
-    MyCounterComponent
+    MyCounterComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,7 @@ import { counterReducer } from './ngrx-reducers/counter.reducer';
     ImageUploadModule.forRoot(),
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    StoreModule.forRoot({authReduce: authReducer, count: counterReducer})
+    StoreModule.forRoot({isLoggedIn: authReducer, count: counterReducer})
   ],
   providers: [DataService, LoggingService, FirebaseService],
   bootstrap: [AppComponent]

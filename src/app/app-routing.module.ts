@@ -13,13 +13,13 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { MyCounterComponent } from './MyCounterComponent';
 
 const appRoutes: Routes = [
-    { path: '', component: ItineraryComponent, canActivate: [AuthGuard]  },
-    { path: 'select', component: SelectComponent, canActivate: [AuthGuard]  },
-    { path: 'feedback/:id/:name', component: FeedbackComponent, canActivate: [AuthGuard]  },
-    { path: 'profile', component: SetupComponent, canActivate: [AuthGuard]  },
-    { path: 'params', component: ParamsComponent, canActivate: [AuthGuard]  },
-    { path: 'counter', component: MyCounterComponent},
-    { path: 'login', component: SigninComponent},
+  { path: 'select', component: SelectComponent, canActivate: [AuthGuard]  },
+  { path: 'feedback/:id/:name', component: FeedbackComponent, canActivate: [AuthGuard]  },
+  { path: 'profile', component: SetupComponent, canActivate: [AuthGuard]  },
+  { path: 'params', component: ParamsComponent, canActivate: [AuthGuard]  },
+  { path: 'counter', component: MyCounterComponent},
+  { path: 'login', component: SigninComponent},
+  { path: '', component: ItineraryComponent},
     // { path: 'signout', component: SigninComponent},
     { path: 'not-found', component: NotFoundComponent},
     { path: '**', redirectTo: '/not-found' }

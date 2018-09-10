@@ -1,7 +1,14 @@
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
+import { ADD_USER, REMOVE_USER } from '../ngrx-actions/auth.action';
+
+interface AppState {
+  isLoggedIn: boolean;
+}
 
 @Component({
   selector: 'app-itinerary',
@@ -9,7 +16,13 @@ import * as moment from 'moment';
   styleUrls: ['./itinerary.component.css']
 })
 export class ItineraryComponent implements OnInit {
+
   itineraryForm: FormGroup;
+  isLoggedIn$: Observable<boolean>;
+
+  constructor(private store: Store<AppState>) {
+    this.isLoggedIn$ = store.pipe(select('isLoggedIn'));
+  }
 
   ngOnInit() {
     this.itineraryForm = new FormGroup({

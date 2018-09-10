@@ -14,9 +14,10 @@ interface AppState {
 export class AuthGuardService implements CanActivate {
   isLoggedIn$: Observable<boolean>;
   isLoggedIn: boolean;
-  constructor(public firebaseService: FirebaseService, public router: Router,
+  constructor(
+    public firebaseService: FirebaseService,
+    public router: Router,
     private store: Store<AppState>) {
-      //  this.isLoggedIn$ = this.store.pipe(select('isLoggedIn')).pipe(subscribe(data => this.genre = data));
        this.store.select('isLoggedIn').subscribe(data => this.isLoggedIn = data);
      }
 
@@ -25,11 +26,18 @@ export class AuthGuardService implements CanActivate {
 
     console.log('isLoggedIn from Store = ', this.isLoggedIn);
 
-    // console.log('in canActivate AuthGuard', this.firebaseService.isAuthenticated());
-    // if (!this.firebaseService.isAuthenticated()) {
-      // this.router.navigate(['login']);
-      // return false;
-    // }
+    console.log('in canActivate AuthGuard', this.isLoggedIn);
+    if (!this.isLoggedIn) {
+      this.router.navigate(['login']);
+      return false;
+    }
     return true;
   }
+
+  isAuthenticated() {
+    this.store.select('isLoggedIn').subscribe(data => this.isLoggedIn = data);
+    console.log('this.userLoggedIn in isAuthenticated in authService = ' + this.isLoggedIn);
+    return this.isLoggedIn;
+  }
+
 }

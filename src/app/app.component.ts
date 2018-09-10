@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+
+import { AuthGuardService } from './services/auth-guard.service';
 import { FirebaseService } from './services/firebase.service';
 import { envVars } from './../envVars.js';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { ADD_USER, REMOVE_USER } from './ngrx-actions/auth.action';
+
+interface AppState {
+  isLoggedIn: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -13,10 +20,14 @@ import { Store } from '@ngrx/store';
 
 export class AppComponent implements OnInit {
   title = 'carpool - save money, save the planet';
-  userLoggedIn = false;
+  isLoggedIn = false;
 
-  constructor(private firebaseService: FirebaseService, private router: Router,
-    private store: Store<{userId: null, isLoggedIn: false }>) { }
+  constructor(
+    private firebaseService: FirebaseService,
+    private authGuardService: AuthGuardService,
+    private router: Router,
+    public store: Store<AppState>
+  ) { }
 
   ngOnInit() {
     console.log('envVars.apiKey = ' + envVars.apiKey);
@@ -27,7 +38,6 @@ export class AppComponent implements OnInit {
     });
 
     this.isAuthenticatedObserver();
-    this.isAuthenticated();
   }
 
   isAuthenticatedObserver() {
@@ -35,27 +45,23 @@ export class AppComponent implements OnInit {
     firebase.auth().onAuthStateChanged(function (user) {
       console.log('in onAuthStateChanged Observer, user = ', user);
       if (user) {
-        this.userLoggedIn = true;
+        that.store.dispatch({type: 'ADD_USER'});
+        // this.userLoggedIn = true;
         console.log('LOGGED IN');
         that.router.navigate(['/']);
       } else {
-        this.userLoggedIn = false;
+        that.store.dispatch({type: 'REMOVE_USER'});
+        // this.userLoggedIn = false;
         console.log('NOT LOGGED IN');
       }
-      console.log('this.userLoggedIn = ' + this.userLoggedIn);
+      // this.isAuthenticated();
     });
   }
 
-  isAuthenticated() {
-    console.log('this.userLoggedIn in isAuthenticated in FirebaseService = ' + this.userLoggedIn);
-    // return this.userLoggedIn;
-    return true;
-  }
-
-
-  onLogout() {
-    console.log('LOGOUT 2222');
-    this.firebaseService.signOut();
+  isAuthenticated = () => {
+    this.store.select('isLoggedIn').subscribe(data => this.isLoggedIn = data);
+    console.log('this.userLoggedIn in isAuthenticated in authService = ' + this.isLoggedIn);
+    return this.isLoggedIn;
   }
 
 }
