@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ParamsComponent } from './params/params.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { MyCounterComponent } from './MyCounterComponent';
 
 const appRoutes: Routes = [
     { path: '', component: ItineraryComponent, canActivate: [AuthGuard]  },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'feedback/:id/:name', component: FeedbackComponent, canActivate: [AuthGuard]  },
     { path: 'profile', component: SetupComponent, canActivate: [AuthGuard]  },
     { path: 'params', component: ParamsComponent, canActivate: [AuthGuard]  },
+    { path: 'counter', component: MyCounterComponent},
     { path: 'login', component: SigninComponent},
     // { path: 'signout', component: SigninComponent},
     { path: 'not-found', component: NotFoundComponent},

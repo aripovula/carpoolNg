@@ -1,23 +1,19 @@
-import { ADD_USER } from '../ngrx-actions/auth.action';
-import * as AuthActions from '../ngrx-actions/auth.action';
 import { Action } from '@ngrx/store';
-// import { User } from '../models/user.model';
 
+export const ADD_USER = 'ADD_USER';
+export const REMOVE_USER = 'REMOVE_USER';
 
-const initialState = {
-    id: null,
-    isLoggedIn: false
-}
-    ;
+const initialState = false;
 
-export function authReducer(state = initialState, action: AuthActions.AuthActions) {
-    switch (action.type) {
-        case AuthActions.ADD_USER:
-            return {
-                id: action.payload.userId,
-                isLoggedIn: action.payload.isLoggedIn
-            };
-        default:
-            return state;
-    }
+export function authReducer(state: boolean = initialState, action: Action) {
+  switch (action.type) {
+    case ADD_USER:
+      return true;
+
+    case REMOVE_USER:
+      return false;
+
+    default:
+      return state;
+  }
 }

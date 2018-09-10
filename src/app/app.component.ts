@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { FirebaseService } from './services/firebase.service';
 import { envVars } from './../envVars.js';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit {
   title = 'carpool - save money, save the planet';
   userLoggedIn = false;
 
-  constructor(private firebaseService: FirebaseService, private router: Router) { }
+  constructor(private firebaseService: FirebaseService, private router: Router,
+    private store: Store<{userId: null, isLoggedIn: false }>) { }
 
   ngOnInit() {
     console.log('envVars.apiKey = ' + envVars.apiKey);

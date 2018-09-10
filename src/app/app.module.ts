@@ -1,3 +1,4 @@
+import { MyCounterComponent } from './MyCounterComponent';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -5,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { StoreModule } from '@ngrx/store';
 
 import { CfilterPipe } from './filters/cfilter.pipe';
 import { FirebaseService } from './services/firebase.service';
@@ -26,6 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SetupComponent } from './setup/setup.component';
 import { PrefsComponent } from './prefs/prefs.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { authReducer } from './ngrx-reducers/auth.reducer';
+import { counterReducer } from './ngrx-reducers/counter.reducer';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,8 @@ import { SigninComponent } from './auth/signin/signin.component';
     SetupComponent,
     PrefsComponent,
     CfilterPipe,
-    SigninComponent
+    SigninComponent,
+    MyCounterComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { SigninComponent } from './auth/signin/signin.component';
     AppRoutingModule,
     ImageUploadModule.forRoot(),
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    StoreModule.forRoot({authReduce: authReducer, count: counterReducer})
   ],
   providers: [DataService, LoggingService, FirebaseService],
   bootstrap: [AppComponent]
