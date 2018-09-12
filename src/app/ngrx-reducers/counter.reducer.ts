@@ -25,7 +25,11 @@ export function counterReducer(state: CounterState = initialState, action: Count
 
 
     case CounterActions.RESET:
-      return state;
+    return {
+      ...state
+      , count: state.count = 0
+    };
+
 
     default:
       return state;

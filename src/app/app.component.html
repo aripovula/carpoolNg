@@ -1,4 +1,21 @@
 <div>
-      <app-menumain></app-menumain>
+      <div class="header header__content fixedElement">
+            <span class="horIndent"></span>
+            <h4 style="color: white">CAR</h4>
+            <h4 style="color: yellow">POOL&nbsp;&nbsp;</h4>
+            <div *ngIf="!(authState | async).isLoggedIn">
+                  <a class="header__title" routerLink="/login" routerLinkActive="active-link">login</a>
+            </div>
+            <a class="header__title" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">home</a>
+            <a class="header__title" routerLink="/select" routerLinkActive="active-link">select</a>
+            <div *ngIf="(authState | async).isLoggedIn">
+                  <a class="header__title" routerLink="/profile" routerLinkActive="active-link">profile</a>
+                  <a class="header__title" routerLink="/params" routerLinkActive="active-link">params</a>
+                  <a class="header__title" routerLink="/counter" routerLinkActive="active-link">counter</a>
+                  <a class="header__title" style="cursor: pointer;" (click)="onLogout()">logout</a>
+            </div>
+            <!-- <a class="header__title" routerLink="" routerLinkActive="active-link">idle</a>
+                        <a class="header__title" routerLink="" routerLinkActive="active-link">idle</a> -->
+      </div>
       <router-outlet></router-outlet>
 </div>

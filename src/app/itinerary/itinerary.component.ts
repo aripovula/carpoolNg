@@ -16,9 +16,13 @@ export class ItineraryComponent implements OnInit {
 
   itineraryForm: FormGroup;
   isLoggedIn: boolean;
+  userId: string;
+  token: string;
 
   constructor(private store: Store<AppState>) {
     this.store.select('auth').subscribe(data => this.isLoggedIn = data.isLoggedIn);
+    this.store.select('auth').subscribe(data => this.userId = data.userId);
+    this.store.select('auth').subscribe(data => this.token = data.token);
   }
 
   ngOnInit() {

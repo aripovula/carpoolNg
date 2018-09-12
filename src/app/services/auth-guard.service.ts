@@ -1,10 +1,12 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { FirebaseService } from './firebase.service';
 import { AppState } from '../ngrx-store/app.reducers';
+import * as AuthState from '../ngrx-reducers/auth.reducer';
 
 @Injectable({
   providedIn: 'root'
@@ -20,22 +22,12 @@ export class AuthGuardService implements CanActivate {
      }
 
   canActivate(): boolean {
-    // this.count$ = store.pipe(select('count'));
-
-    console.log('isLoggedIn from Store = ', this.isLoggedIn);
-
-    console.log('in canActivate AuthGuard', this.isLoggedIn);
+    console.log('in canActivate - AuthGuard from Store = ', this.isLoggedIn);
     if (!this.isLoggedIn) {
       this.router.navigate(['login']);
       return false;
     }
     return true;
-  }
-
-  isAuthenticated() {
-    this.store.select('isLoggedIn').subscribe(data => this.isLoggedIn = data);
-    console.log('this.userLoggedIn in isAuthenticated in authService = ' + this.isLoggedIn);
-    return this.isLoggedIn;
   }
 
 }

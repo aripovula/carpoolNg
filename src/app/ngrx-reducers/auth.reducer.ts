@@ -20,6 +20,7 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
       console.log('in AuthActions.ADD_USER');
       return {
         ...state,
+        userId: action.payload,
         isLoggedIn: true
       };
 
@@ -30,6 +31,13 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
         isLoggedIn: false,
         userId: null,
         token: null
+      };
+
+      case AuthActions.SET_TOKEN:
+      console.log('in AuthActions.SET_TOKEN', action.payload);
+      return {
+        ...state,
+        token: action.payload
       };
 
     default:

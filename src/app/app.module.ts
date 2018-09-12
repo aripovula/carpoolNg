@@ -27,7 +27,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SetupComponent } from './setup/setup.component';
 import { PrefsComponent } from './prefs/prefs.component';
 import { SigninComponent } from './auth/signin/signin.component';
-import { MenuComponent } from './menu/menu.component';
 import { MyCounterComponent } from './MyCounterComponent';
 import { appReducers } from './ngrx-store/app.reducers';
 
@@ -50,7 +49,6 @@ import { appReducers } from './ngrx-store/app.reducers';
     CfilterPipe,
     SigninComponent,
     MyCounterComponent,
-    MenuComponent
   ],
   imports: [
     BrowserModule,

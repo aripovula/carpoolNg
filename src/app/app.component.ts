@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
@@ -6,8 +7,10 @@ import * as firebase from 'firebase';
 import { AuthGuardService } from './services/auth-guard.service';
 import { FirebaseService } from './services/firebase.service';
 import { envVars } from './../envVars.js';
-import { ADD_USER, REMOVE_USER } from './ngrx-actions/auth.action';
+// import { ADD_USER, REMOVE_USER, AuthActions, AddUser, SetToken, SetUserId } from './ngrx-actions/auth.action';
 import { AppState } from './ngrx-store/app.reducers';
+import * as authState from './ngrx-reducers/auth.reducer';
+import * as AuthActions from './ngrx-actions/auth.action';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +21,7 @@ import { AppState } from './ngrx-store/app.reducers';
 export class AppComponent implements OnInit {
   title = 'carpool - save money, save the planet';
   isLoggedIn = false;
+  authState: Observable<authState.AuthState>;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -35,6 +39,7 @@ export class AppComponent implements OnInit {
     });
 
     this.isAuthenticatedObserver();
+    this.authState = this.store.select('auth');
   }
 
   isAuthenticatedObserver() {
@@ -42,7 +47,9 @@ export class AppComponent implements OnInit {
     firebase.auth().onAuthStateChanged(function (user) {
       console.log('in onAuthStateChanged Observer, user = ', user);
       if (user) {
-        that.store.dispatch({type: 'ADD_USER'});
+        that.store.dispatch(new AuthActions.AddUser(user.uid));
+        that.store.dispatch(new AuthActions.SetUserId(user.uid));
+        // that.store.dispatch(new AuthActions.SetToken(''));
         // this.userLoggedIn = true;
         console.log('LOGGED IN');
         that.router.navigate(['/']);
@@ -63,5 +70,11 @@ export class AppComponent implements OnInit {
   //   console.log('this.userLoggedIn in isAuthenticated in authService = ' + this.isLoggedIn);
   //   return this.isLoggedIn;
   // }
+
+  onLogout() {
+    console.log('LOGOUT 2222');
+    this.router.navigate(['/login']);
+    this.firebaseService.signOut();
+  }
 
 }

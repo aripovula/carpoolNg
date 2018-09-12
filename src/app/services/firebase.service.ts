@@ -7,9 +7,13 @@ import 'rxjs/add/observable/fromPromise';
 import { mergeMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { DataService } from './data.service';
 import { LoggingService } from './../services/logging.service';
+import { AppState } from '../ngrx-store/app.reducers';
+import * as authState from '../ngrx-reducers/auth.reducer';
+import * as AuthActions from '../ngrx-actions/auth.action';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +24,22 @@ export class FirebaseService {
   userLoggedIn = false;
   that = this;
 
-  constructor(private http: Http, private logService: LoggingService, private router: Router ) {
+  constructor(
+    private http: Http,
+    private logService: LoggingService,
+    private router: Router,
+    public store: Store<AppState>
+  ) {
     console.log('in Const FB srv');
-   }
+  }
 
   saveCompanionsSelected(selectedCompanions) {
     this.logService.logStatusChange('in getCompanionsSelected2  firebase.auth() = ' + firebase.auth().currentUser);
     if (firebase.auth().currentUser != null) {
       const tokenObs = Observable.fromPromise(firebase.auth().currentUser.getIdToken());
+      this.token = tokenObs.pipe(mergeMap(token => this.token = token));
+      this.store.dispatch(new AuthActions.SetToken(this.token));
+
       return tokenObs
         .pipe(mergeMap(token => this.http.put('https://carpoolng-4d8e8.firebaseio.com/companionsSelected.json?auth=' + token
           , selectedCompanions)))
