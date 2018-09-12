@@ -51,8 +51,8 @@ export class AppComponent implements OnInit {
         // this.userLoggedIn = false;
         console.log('NOT LOGGED IN');
       }
-      that.store.select('isLoggedIn').subscribe(data => {
-        that.isLoggedIn = data;
+      that.store.select('auth').subscribe(data => {
+        that.isLoggedIn = data.isLoggedIn;
         console.log('that.userLoggedIn = ' + that.isLoggedIn);
       });
     });

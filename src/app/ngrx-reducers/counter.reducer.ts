@@ -14,20 +14,18 @@ export function counterReducer(state: CounterState = initialState, action: Count
     case CounterActions.INCREMENT:
       return {
         ...state
-        // ,
-        // count: state.count + action.payload
+        , count: state.count + 1
       };
 
     case CounterActions.DECREMENT:
     return {
       ...state
-      // ,
-      // count: state.count + action.payload
+      , count: state.count - 1
     };
 
 
     case CounterActions.RESET:
-      return 0;
+      return state;
 
     default:
       return state;

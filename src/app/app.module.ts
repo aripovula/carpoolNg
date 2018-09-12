@@ -1,4 +1,3 @@
-import { MyCounterComponent } from './MyCounterComponent';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -28,9 +27,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { SetupComponent } from './setup/setup.component';
 import { PrefsComponent } from './prefs/prefs.component';
 import { SigninComponent } from './auth/signin/signin.component';
-import { authReducer } from './ngrx-reducers/auth.reducer';
-import { counterReducer } from './ngrx-reducers/counter.reducer';
 import { MenuComponent } from './menu/menu.component';
+import { MyCounterComponent } from './MyCounterComponent';
+import { appReducers } from './ngrx-store/app.reducers';
 
 @NgModule({
   declarations: [
@@ -63,7 +62,7 @@ import { MenuComponent } from './menu/menu.component';
     ImageUploadModule.forRoot(),
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    StoreModule.forRoot({isLoggedIn: authReducer, count: counterReducer})
+    StoreModule.forRoot(appReducers)
   ],
   providers: [DataService, LoggingService, FirebaseService],
   bootstrap: [AppComponent]

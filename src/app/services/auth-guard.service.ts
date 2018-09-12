@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
     public firebaseService: FirebaseService,
     public router: Router,
     private store: Store<AppState>) {
-       this.store.select('isLoggedIn').subscribe(data => this.isLoggedIn = data);
+       this.store.select('auth').subscribe(data => this.isLoggedIn = data.isLoggedIn);
      }
 
   canActivate(): boolean {

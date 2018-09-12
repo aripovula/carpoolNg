@@ -3,6 +3,8 @@ import { Action } from '@ngrx/store';
 
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
+export const SET_USER_ID = 'SET_USER_ID';
+export const TOKEN = 'TOKEN';
 
 export class AddUser implements Action {
     readonly type = ADD_USER;
@@ -16,5 +18,15 @@ export class RemoveUser implements Action {
     // payload: { isLoggedIn: false };
 }
 
-export type AuthActions = AddUser;
-// export type AuthActions = [ AddUser, RemoveUser ];
+export class SetUserId implements Action {
+    readonly type = SET_USER_ID;
+    constructor (public payload: string) {}
+}
+
+export class SetToken implements Action {
+    readonly type = TOKEN;
+    constructor (public payload: string) {}
+}
+
+// export type AuthActions = AddUser;
+export type AuthActions = AddUser | RemoveUser | SetUserId | SetToken;
