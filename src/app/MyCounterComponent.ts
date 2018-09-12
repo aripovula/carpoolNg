@@ -10,7 +10,7 @@ import * as CounterActions from './ngrx-actions/counter.action';
   template: `
   <br/><br/><br/><br/>
     <button (click)="increment()">Increment</button>
-    <div>Current Count: {{ count$ | async }}</div>
+    <div>Current Count: {{ count }}</div>
     <button (click)="decrement()">Decrement</button>
 
     <button (click)="reset()">Reset Counter</button>
@@ -18,10 +18,12 @@ import * as CounterActions from './ngrx-actions/counter.action';
 })
 export class MyCounterComponent {
   count$: Observable<number>;
+  count: number;
 
   constructor(private store: Store<AppState>) {
-    this.count$ = store.pipe(select('count'));
-    console.log('count from Store = ', this.count$);
+    this.count$ = store.pipe(select('counter'));
+    this.store.select('counter').subscribe(data => this.count = data.count);
+    console.log('count from Store = ', this.count);
   }
 
   increment() {

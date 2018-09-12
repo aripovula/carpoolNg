@@ -15,10 +15,10 @@ import { AppState } from '../ngrx-store/app.reducers';
 export class ItineraryComponent implements OnInit {
 
   itineraryForm: FormGroup;
-  isLoggedIn$: Observable<boolean>;
+  isLoggedIn: boolean;
 
   constructor(private store: Store<AppState>) {
-    this.isLoggedIn$ = store.pipe(select('isLoggedIn'));
+    this.store.select('auth').subscribe(data => this.isLoggedIn = data.isLoggedIn);
   }
 
   ngOnInit() {
