@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { FirebaseService } from './firebase.service';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-interface AppState {
-  isLoggedIn: boolean;
-}
+import { FirebaseService } from './firebase.service';
+import { AppState } from '../ngrx-store/app.reducers';
 
 @Injectable({
   providedIn: 'root'

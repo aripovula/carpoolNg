@@ -1,20 +1,32 @@
 import { Action } from '@ngrx/store';
+import * as CounterActions from '../ngrx-actions/counter.action';
 
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-export const RESET = 'RESET';
+export interface CounterState {
+  count: number;
+}
 
-const initialState = 0;
+const initialState: CounterState = {
+  count: 0
+};
 
-export function counterReducer(state: number = initialState, action: Action) {
+export function counterReducer(state: CounterState = initialState, action: CounterActions.CounterActions) {
   switch (action.type) {
-    case INCREMENT:
-      return state + 1;
+    case CounterActions.INCREMENT:
+      return {
+        ...state
+        // ,
+        // count: state.count + action.payload
+      };
 
-    case DECREMENT:
-      return state - 1;
+    case CounterActions.DECREMENT:
+    return {
+      ...state
+      // ,
+      // count: state.count + action.payload
+    };
 
-    case RESET:
+
+    case CounterActions.RESET:
       return 0;
 
     default:

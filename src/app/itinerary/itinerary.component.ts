@@ -5,10 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
 import { ADD_USER, REMOVE_USER } from '../ngrx-actions/auth.action';
-
-interface AppState {
-  isLoggedIn: boolean;
-}
+import { AppState } from '../ngrx-store/app.reducers';
 
 @Component({
   selector: 'app-itinerary',

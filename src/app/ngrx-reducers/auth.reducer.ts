@@ -1,11 +1,17 @@
 import { Action } from '@ngrx/store';
+import { ADD_USER, REMOVE_USER } from '../ngrx-actions/auth.action';
 
-export const ADD_USER = 'ADD_USER';
-export const REMOVE_USER = 'REMOVE_USER';
+export interface AuthState {
+  userId: string;
+  isLoggedIn: boolean;
+}
 
-const initialState = false;
+const initialState: AuthState = {
+  userId: null,
+  isLoggedIn: false
+};
 
-export function authReducer(state: boolean = initialState, action: Action) {
+export function authReducer(state = initialState, action: Action) {
   switch (action.type) {
     case ADD_USER:
       return true;

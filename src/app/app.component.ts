@@ -7,10 +7,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { FirebaseService } from './services/firebase.service';
 import { envVars } from './../envVars.js';
 import { ADD_USER, REMOVE_USER } from './ngrx-actions/auth.action';
-
-interface AppState {
-  isLoggedIn: boolean;
-}
+import { AppState } from './ngrx-store/app.reducers';
 
 @Component({
   selector: 'app-root',
@@ -54,14 +51,17 @@ export class AppComponent implements OnInit {
         // this.userLoggedIn = false;
         console.log('NOT LOGGED IN');
       }
-      // this.isAuthenticated();
+      that.store.select('isLoggedIn').subscribe(data => {
+        that.isLoggedIn = data;
+        console.log('that.userLoggedIn = ' + that.isLoggedIn);
+      });
     });
   }
 
-  isAuthenticated = () => {
-    this.store.select('isLoggedIn').subscribe(data => this.isLoggedIn = data);
-    console.log('this.userLoggedIn in isAuthenticated in authService = ' + this.isLoggedIn);
-    return this.isLoggedIn;
-  }
+  // isAuthenticated = () => {
+  //   this.store.select('isLoggedIn').subscribe(data => this.isLoggedIn = data);
+  //   console.log('this.userLoggedIn in isAuthenticated in authService = ' + this.isLoggedIn);
+  //   return this.isLoggedIn;
+  // }
 
 }
