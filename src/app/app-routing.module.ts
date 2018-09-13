@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'params', component: ParamsComponent, canActivate: [AuthGuard]  },
   { path: 'counter', component: MyCounterComponent},
   { path: 'login', component: SigninComponent},
-  { path: '', component: ItineraryComponent},
+  { path: 'home', component: ItineraryComponent, canActivate: [AuthGuard]  },
     // { path: 'signout', component: SigninComponent},
     { path: 'not-found', component: NotFoundComponent},
     { path: '**', redirectTo: '/not-found' }

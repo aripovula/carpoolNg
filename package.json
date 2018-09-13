@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@ngrx/effects": "^6.1.0",
     "@ngrx/store": "^6.1.0",
     "adm-zip": "^0.4.11",
     "angular2-image-upload": "^1.0.0-rc.1",

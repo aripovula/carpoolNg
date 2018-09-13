@@ -28,6 +28,11 @@ export class AuthGuardService implements CanActivate {
       return false;
     }
     return true;
+
+    // return this.store.select('auth').map((authState: AuthState.AuthState) => {
+    //   return authState.isLoggedIn;
+    // });
+
   }
 
 }

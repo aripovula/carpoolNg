@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
         // that.store.dispatch(new AuthActions.SetToken(''));
         // this.userLoggedIn = true;
         console.log('LOGGED IN');
-        that.router.navigate(['/']);
+        that.router.navigate(['/home']);
       } else {
         that.store.dispatch({type: 'REMOVE_USER'});
         // this.userLoggedIn = false;
