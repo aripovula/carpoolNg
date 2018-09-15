@@ -1,13 +1,16 @@
+import { Injectable, EventEmitter } from '@angular/core';
+
+import { Companion } from './../models/companion.model';
 import { LoggingService } from './../services/logging.service';
 import { FirebaseService } from './../services/firebase.service';
-import { Injectable, EventEmitter } from '@angular/core';
+
 
 @Injectable()
 export class DataService {
     companions = [
-        { id: 1, name: 'Alex', rating: 8.4, isSelected: false, image: '../assets/Alex.jpg' },
-        { id: 2, name: 'Ben', rating: 8.2, isSelected: false, image: '../assets/Ben.jpg' },
-        { id: 3, name: 'Cathy', rating: 8.6, isSelected: false, image: '../assets/Cathy.jpg' }
+        new Companion( 1, 'Alex', 8.4, false, '../assets/Alex.jpg'),
+        new Companion( 2, 'Ben', 8.2, false, '../assets/Ben.jpg' ),
+        new Companion( 3, 'Cathy', 8.6, false, '../assets/Cathy.jpg')
     ];
 
     companionID = undefined;
